@@ -7,10 +7,10 @@ public class bibliotecario {
     private String cargo;
     private String senha;
 
-    public bibliotecario(String nome, int id, String cargo, String senha) {
+    public bibliotecario(String nome, int id,  String senha) {
         this.nome = nome;
         this.id = id;
-        this.cargo = cargo;
+        this.cargo = "Bibliotecário";
         this.senha = senha;
     }
 
