@@ -15,6 +15,7 @@ public class bibliotecario {
     }
 
     public String getNome() {
+
         return nome;
     }
 
