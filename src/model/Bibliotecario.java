@@ -1,13 +1,13 @@
 package model;
 
-public class bibliotecario {
+public class Bibliotecario {
 
     private String nome;
     private int id;
     private String cargo;
     private String senha;
 
-    public bibliotecario(String nome, int id,  String senha) {
+    public Bibliotecario(String nome, int id,  String senha) {
         this.nome = nome;
         this.id = id;
         this.cargo = "Bibliotecário";
