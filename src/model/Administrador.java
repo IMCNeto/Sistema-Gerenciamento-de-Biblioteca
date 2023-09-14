@@ -1,6 +1,6 @@
 package model;
 
-public class administrador {
+public class Administrador {
 
     private String nome;
     private int id;
@@ -8,7 +8,7 @@ public class administrador {
     private String senha;
 
 
-    public administrador(String nome, int id,  String senha) {
+    public Administrador(String nome, int id,  String senha) {
         this.nome = nome;
         this.id = id;
         this.cargo = "Administrador";
