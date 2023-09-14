@@ -5,7 +5,8 @@ public class Usuario {
     private int telefone;
     private String endereco;
     private int num_id;
-    private String situacao;
+    private int situacao; // 0 = Livre; 1 = Bloqueado;
+    private int multa;
 
 
     public Usuario(String nome, int telefone, String endereco, int num_id) {
@@ -47,11 +48,41 @@ public class Usuario {
         this.num_id = num_id;
     }
 
+
+    //verifica se o usuário está bloqueado
     public String getSituacao() {
-        return situacao;
+        if (situacao == 0){
+            return "Liberado";
+        }
+        else {
+            return "Bloqueado";
+        }
+
     }
 
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
+
+    //retorna multa do usuário(Dias)
+    public int getMulta() {
+        return multa;
     }
+
+
+    //define multa do usuário
+    public void setMulta(int multa) {
+        this.multa = multa;
+    }
+
+
+    //bloqueia usuário
+    public void bloquearUsuario(){
+        this.situacao = 1;
+
+    }
+
+
+    //desbloqueia usuário
+    public void liberarUsuario(){
+        this.situacao = 0;
+    }
+
 }
