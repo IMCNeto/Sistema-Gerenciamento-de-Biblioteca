@@ -22,7 +22,6 @@ public class BibliotecarioDAO implements CRUD<Bibliotecario> {
 
     @Override
     public Bibliotecario create(Bibliotecario obj) {
-        obj.setId(this.prox_id);
         this.lista.add(obj);
         return obj;
     }
