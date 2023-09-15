@@ -1,10 +1,12 @@
 package DAO;
 
+import java.util.List;
+
 public interface CRUD<T> {
 
     public T create(T obj);
 
-    public list<T> read(T obj);
+    public List<T> read(T obj);
 
     public T readID(int id);
 
