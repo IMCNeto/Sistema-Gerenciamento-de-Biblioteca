@@ -1,11 +1,12 @@
 package DAO;
 
+import Interfaces.AdministradorCRUD;
 import Interfaces.CRUD;
 import model.Administrador;
 
 import java.util.ArrayList;
 import java.util.List;
-public class AdministradorDAO implements CRUD<Administrador> {
+public class AdministradorDAO implements AdministradorCRUD {
 
     private ArrayList<Administrador> lista;
     private int proxId;
