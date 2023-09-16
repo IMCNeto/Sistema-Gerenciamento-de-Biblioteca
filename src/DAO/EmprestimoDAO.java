@@ -1,12 +1,13 @@
 package DAO;
 
+import Interfaces.EmprestimoCRUD;
 import model.Emprestimo;
 import model.Usuario;
 
 
 import java.util.ArrayList;
 import java.util.List;
-public class EmprestimoDAO  {
+public class EmprestimoDAO implements EmprestimoCRUD {
 
     private ArrayList<Emprestimo> lista;
     private int proxId;
@@ -34,7 +35,7 @@ public class EmprestimoDAO  {
     }
 
 
-    public Emprestimo readID(Usuario usuario) {
+    public Emprestimo findbyID(Usuario usuario) {
         for (Emprestimo obj : this.lista){
             if (obj.getUsuario() == usuario){
                 return obj;
@@ -43,13 +44,6 @@ public class EmprestimoDAO  {
         return null;
     }
 
-
-    public Emprestimo update(Emprestimo obj){
-        int index = this.lista.indexOf(obj);
-        this.lista.set(index,obj);
-        return obj;
-
-    }
 
 
     public void delete(Emprestimo obj){
