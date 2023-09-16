@@ -1,12 +1,13 @@
 package DAO;
 
+import Interfaces.BibliotecarioCRUD;
 import Interfaces.CRUD;
 import model.Bibliotecario;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BibliotecarioDAO implements CRUD<Bibliotecario> {
+public class BibliotecarioDAO implements BibliotecarioCRUD {
 
     private ArrayList<Bibliotecario> lista;
     private int prox_id;
