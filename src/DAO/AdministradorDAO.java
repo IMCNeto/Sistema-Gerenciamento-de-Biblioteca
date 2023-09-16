@@ -1,7 +1,7 @@
 package DAO;
 
+import Interfaces.CRUD;
 import model.Administrador;
-import model.Bibliotecario;
 
 import java.util.ArrayList;
 import java.util.List;

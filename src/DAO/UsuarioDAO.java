@@ -1,10 +1,11 @@
 package DAO;
 
+import Interfaces.CRUD;
 import model.Usuario;
 
 import java.util.ArrayList;
 
-public class UsuarioDAO implements CRUD<model.Usuario>{
+public class UsuarioDAO implements CRUD<Usuario> {
 
     private ArrayList<Usuario> lista;
     private int prox_id;
