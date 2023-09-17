@@ -1,7 +1,6 @@
-package DAO;
+package dao;
 
 import Interfaces.AdministradorCRUD;
-import Interfaces.CRUD;
 import model.Administrador;
 
 import java.util.ArrayList;

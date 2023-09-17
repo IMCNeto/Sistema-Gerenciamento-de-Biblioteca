@@ -1,7 +1,6 @@
-package DAO;
+package dao;
 
 import Interfaces.BibliotecarioCRUD;
-import Interfaces.CRUD;
 import model.Bibliotecario;
 
 import java.util.ArrayList;

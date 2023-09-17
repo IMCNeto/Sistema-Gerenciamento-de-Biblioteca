@@ -1,6 +1,5 @@
-package DAO;
+package dao;
 
-import Interfaces.CRUD;
 import Interfaces.UsuarioCRUD;
 import model.Usuario;
 
