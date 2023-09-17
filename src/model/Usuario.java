@@ -85,4 +85,15 @@ public class Usuario {
         this.situacao = 0;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", telefone=" + telefone +
+                ", endereco='" + endereco + '\'' +
+                ", num_id=" + num_id +
+                ", situacao=" + situacao +
+                ", multa=" + multa +
+                '}';
+    }
 }
