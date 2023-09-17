@@ -24,6 +24,7 @@ public class AdministradorDAO implements AdministradorCRUD {
 
     @Override
     public Administrador create(Administrador objeto){
+        this.lista.add(objeto);
         return objeto;
 
     }
