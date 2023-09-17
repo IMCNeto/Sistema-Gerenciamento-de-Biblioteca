@@ -24,7 +24,6 @@ public class UsuarioDAO implements UsuarioCRUD {
 
     @Override
     public Usuario create(Usuario obj) {
-        obj.setNum_id(this.getProx_id());
         this.lista.add(obj);
         return obj;
     }
