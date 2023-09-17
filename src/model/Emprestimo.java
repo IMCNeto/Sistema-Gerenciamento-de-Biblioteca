@@ -23,6 +23,7 @@ public class Emprestimo {
         this.status = 0;
     }
 
+
     public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
@@ -73,6 +74,18 @@ public class Emprestimo {
         }
     }
 
+    public Emprestimo realizarEmprestimo(){
+        if (usuario.getMulta() == 0){
+            if(livro.getStatus().equals("Livre")) {
+                this.status = 0;
+                return this;
+            }
+        }
+        return null;
+
+    }
+
+
 
     //método para finalizar o empréstimo
     public void finalizarEmprestimo(){
@@ -82,6 +95,14 @@ public class Emprestimo {
         usuario.setMulta(multa);
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Emprestimo{" +
+                "dataEmprestimo=" + dataEmprestimo +
+                ", dataDevolver=" + dataDevolver +
+                ", usuario=" + usuario +
+                ", livro=" + livro +
+                ", status=" + status +
+                '}';
+    }
 }
