@@ -24,6 +24,7 @@ public class LivroDAO {
 
 
     public Livro create(Livro objeto){
+        this.lista.add(objeto);
         return objeto;
 
     }
