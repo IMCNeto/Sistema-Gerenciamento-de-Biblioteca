@@ -10,6 +10,7 @@ import java.util.List;
 public class EmprestimoDAO implements EmprestimoCRUD {
 
     private ArrayList<Emprestimo> lista;
+
     private int proxId;
 
     public void listaOperadoresDAO(){
@@ -25,7 +26,11 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
 
     public Emprestimo create(Emprestimo objeto){
-        return objeto;
+        if (objeto != null) {
+            this.lista.add(objeto);
+            return objeto;
+        }
+        return null;
 
     }
 
@@ -35,13 +40,15 @@ public class EmprestimoDAO implements EmprestimoCRUD {
     }
 
 
-    public Emprestimo findbyID(Usuario usuario) {
+    //Retorna lista com todos os empréstimos de um usuário
+    public List<Emprestimo> findbyID(Usuario usuario) {
+        List<Emprestimo> emp_usu = new ArrayList<Emprestimo>();
         for (Emprestimo obj : this.lista){
             if (obj.getUsuario() == usuario){
-                return obj;
+                emp_usu.add(obj);
             }
         }
-        return null;
+        return emp_usu;
     }
 
 
