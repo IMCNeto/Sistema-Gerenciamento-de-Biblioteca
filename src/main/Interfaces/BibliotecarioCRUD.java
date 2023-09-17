@@ -1,7 +1,6 @@
-package Interfaces;
+package main.Interfaces;
 
-import model.Bibliotecario;
-import model.Bibliotecario;
+import main.model.Bibliotecario;
 
 import java.util.List;
 

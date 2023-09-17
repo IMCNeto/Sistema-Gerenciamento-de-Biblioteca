@@ -1,6 +1,6 @@
-package Interfaces;
+package main.Interfaces;
 
-import model.Administrador;
+import main.model.Administrador;
 
 import java.util.List;
 

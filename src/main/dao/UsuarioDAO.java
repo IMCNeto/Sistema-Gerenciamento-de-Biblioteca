@@ -1,7 +1,7 @@
-package dao;
+package main.dao;
 
-import Interfaces.UsuarioCRUD;
-import model.Usuario;
+import main.Interfaces.UsuarioCRUD;
+import main.model.Usuario;
 
 import java.util.ArrayList;
 

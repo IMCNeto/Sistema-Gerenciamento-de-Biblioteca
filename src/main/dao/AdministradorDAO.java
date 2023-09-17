@@ -1,7 +1,7 @@
-package dao;
+package main.dao;
 
-import Interfaces.AdministradorCRUD;
-import model.Administrador;
+import main.Interfaces.AdministradorCRUD;
+import main.model.Administrador;
 
 import java.util.ArrayList;
 import java.util.List;

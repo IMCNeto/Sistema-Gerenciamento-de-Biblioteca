@@ -1,21 +1,21 @@
-package model;
+package main.model;
 
-public class Administrador {
+public class Bibliotecario {
 
     private String nome;
     private int id;
     private String cargo;
     private String senha;
 
-
-    public Administrador(String nome, int id,  String senha) {
+    public Bibliotecario(String nome, int id,  String senha) {
         this.nome = nome;
         this.id = id;
-        this.cargo = "Administrador";
+        this.cargo = "Bibliotecário";
         this.senha = senha;
     }
 
     public String getNome() {
+
         return nome;
     }
 

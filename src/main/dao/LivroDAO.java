@@ -1,7 +1,7 @@
-package dao;
+package main.dao;
 
 
-import model.Livro;
+import main.model.Livro;
 
 
 import java.util.ArrayList;
