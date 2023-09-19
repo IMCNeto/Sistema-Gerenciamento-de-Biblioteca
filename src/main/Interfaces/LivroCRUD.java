@@ -6,13 +6,13 @@ import main.model.Livro;
 import java.util.List;
 
 public interface LivroCRUD extends CRUD<Livro>{
-    public Emprestimo create(Emprestimo obj);
+    public Livro create(Livro obj);
 
-    public List<Emprestimo> read(Emprestimo obj);
+    public List<Livro> read();
 
     public Livro readID(String isbn);
 
-    public void delete(Emprestimo obj);
+    public void delete(Livro obj);
 
     public void deleteMany();
 }
