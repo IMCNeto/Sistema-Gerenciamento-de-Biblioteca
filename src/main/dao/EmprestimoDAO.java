@@ -27,6 +27,7 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     public Emprestimo create(Emprestimo objeto){
         if (objeto != null) {
+            objeto.setId(this.getProxId());
             this.lista.add(objeto);
             return objeto;
         }
@@ -35,13 +36,24 @@ public class EmprestimoDAO implements EmprestimoCRUD {
     }
 
 
+
+
     public List<Emprestimo> read(){
         return this.lista;
     }
 
+    public Emprestimo findbyID(int index){
+        for(Emprestimo x : this.lista){
+            if(x.getId() == index){
+                return x;
+            }
+        }
+        return null;
+    }
+
 
     //Retorna lista com todos os empréstimos de um usuário
-    public List<Emprestimo> findbyID(Usuario usuario) {
+    public List<Emprestimo> findbyUser(Usuario usuario) {
         List<Emprestimo> emp_usu = new ArrayList<Emprestimo>();
         for (Emprestimo obj : this.lista){
             if (obj.getUsuario() == usuario){

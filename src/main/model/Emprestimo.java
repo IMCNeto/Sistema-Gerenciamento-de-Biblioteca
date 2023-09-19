@@ -12,6 +12,7 @@ public class Emprestimo {
         private Usuario usuario;
         private Livro livro;
         private int status; // 0 = Em andamento; 1 = Finalizado
+        private int id;
 
 
     public Emprestimo(String datEmprestimo, Usuario usuario,Livro livro) {
@@ -104,5 +105,13 @@ public class Emprestimo {
                 ", livro=" + livro +
                 ", status=" + status +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

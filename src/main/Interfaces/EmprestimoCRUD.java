@@ -10,7 +10,9 @@ public interface EmprestimoCRUD extends CRUD<Emprestimo>{
 
     public List<Emprestimo> read();
 
-    public List<Emprestimo> findbyID(Usuario user);
+    public Emprestimo findbyID(int id);
+
+    public List<Emprestimo> findbyUser(Usuario user);
 
     public void delete(Emprestimo obj);
 
