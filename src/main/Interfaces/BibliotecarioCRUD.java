@@ -7,7 +7,7 @@ import java.util.List;
 public interface BibliotecarioCRUD extends CRUD<Bibliotecario> {
     public Bibliotecario create(Bibliotecario obj);
 
-    public List<Bibliotecario> read(Bibliotecario obj);
+    public List<Bibliotecario> read();
 
     public Bibliotecario readID(int id);
 

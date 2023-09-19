@@ -7,7 +7,7 @@ import java.util.List;
 public interface UsuarioCRUD extends CRUD<Usuario> {
     public Usuario create(Usuario obj);
 
-    public List<Usuario> read(Usuario obj);
+    public List<Usuario> read();
 
     public Usuario readID(int id);
 

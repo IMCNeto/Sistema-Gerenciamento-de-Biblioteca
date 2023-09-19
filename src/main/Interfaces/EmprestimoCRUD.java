@@ -8,7 +8,7 @@ import java.util.List;
 public interface EmprestimoCRUD extends CRUD<Emprestimo>{
     public Emprestimo create(Emprestimo obj);
 
-    public List<Emprestimo> read(Emprestimo obj);
+    public List<Emprestimo> read();
 
     public List<Emprestimo> findbyID(Usuario user);
 

@@ -8,7 +8,7 @@ public interface AdministradorCRUD extends CRUD<Administrador> {
 
     public Administrador create(Administrador obj);
 
-    public List<Administrador> read(Administrador obj);
+    public List<Administrador> read();
 
     public Administrador readID(int id);
 
