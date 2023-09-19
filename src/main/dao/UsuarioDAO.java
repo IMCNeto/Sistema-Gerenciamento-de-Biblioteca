@@ -10,7 +10,7 @@ public class UsuarioDAO implements UsuarioCRUD {
     private ArrayList<Usuario> lista;
     private int prox_id;
 
-    public void listaUsuariosDAO(){
+    public UsuarioDAO(){
 
         this.lista = new ArrayList<>();
         this.prox_id = 0;
@@ -29,7 +29,7 @@ public class UsuarioDAO implements UsuarioCRUD {
 
     @Override
     // lê toda lista;
-    public ArrayList<Usuario> read(Usuario obj) {
+    public ArrayList<Usuario> read() {
         return this.lista;
     }
 

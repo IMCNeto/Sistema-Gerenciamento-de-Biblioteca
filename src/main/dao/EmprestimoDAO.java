@@ -13,7 +13,7 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     private int proxId;
 
-    public void listaOperadoresDAO(){
+    public EmprestimoDAO(){
         this.lista = new ArrayList<>();
         this.proxId = 0;
 
@@ -35,7 +35,7 @@ public class EmprestimoDAO implements EmprestimoCRUD {
     }
 
 
-    public List<Emprestimo> read(Emprestimo objeto){
+    public List<Emprestimo> read(){
         return this.lista;
     }
 

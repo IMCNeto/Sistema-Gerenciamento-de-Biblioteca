@@ -11,7 +11,7 @@ public class BibliotecarioDAO implements BibliotecarioCRUD {
     private ArrayList<Bibliotecario> lista;
     private int prox_id;
 
-    public void listaOperadoresDAO(){
+    public BibliotecarioDAO(){
         this.lista = new ArrayList<>();
         this.prox_id = 0;
 
@@ -28,7 +28,7 @@ public class BibliotecarioDAO implements BibliotecarioCRUD {
     }
 
     @Override
-    public List<Bibliotecario> read(Bibliotecario obj) {
+    public List<Bibliotecario> read() {
         return this.lista;
     }
 

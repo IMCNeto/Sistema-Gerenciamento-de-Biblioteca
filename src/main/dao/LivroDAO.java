@@ -11,7 +11,7 @@ public class LivroDAO {
     private ArrayList<Livro> lista;
     private int proxId;
 
-    public void listaOperadoresDAO(){
+    public LivroDAO(){
         this.lista = new ArrayList<>();
         this.proxId = 0;
 
@@ -30,7 +30,7 @@ public class LivroDAO {
     }
 
 
-    public List<Livro> read(Livro objeto){
+    public List<Livro> read(){
         return this.lista;
     }
 

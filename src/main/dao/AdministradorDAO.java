@@ -10,7 +10,7 @@ public class AdministradorDAO implements AdministradorCRUD {
     private ArrayList<Administrador> lista;
     private int proxId;
 
-    public void listaOperadoresDAO(){
+    public AdministradorDAO(){
         this.lista = new ArrayList<>();
         this.proxId = 0;
 
@@ -29,7 +29,7 @@ public class AdministradorDAO implements AdministradorCRUD {
     }
 
     @Override
-    public List<Administrador> read(Administrador objeto){
+    public List<Administrador> read(){
         return this.lista;
     }
 
