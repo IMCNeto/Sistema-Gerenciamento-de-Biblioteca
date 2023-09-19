@@ -76,7 +76,7 @@ public class Emprestimo {
 
     public Emprestimo realizarEmprestimo(){
         if (usuario.getMulta() == 0){
-            if(livro.getStatus().equals("Livre")) {
+            if(livro.isEmprestimo().equals("Livre")) {
                 this.status = 0;
                 return this;
             }
@@ -90,7 +90,7 @@ public class Emprestimo {
     //método para finalizar o empréstimo
     public void finalizarEmprestimo(){
         this.status = 1;
-        livro.liberarLivro();
+        livro.setEmprestimo(false);
         int multa = calcularMulta(dataDevolver);
         usuario.setMulta(multa);
     }
