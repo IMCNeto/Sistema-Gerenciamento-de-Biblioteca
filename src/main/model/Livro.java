@@ -6,26 +6,25 @@ public class Livro {
     private String autor;
     private String editora;
     private String ISBN;
-    private int status; // condição: 0-Livre 1-Emprestado 2-Reservado
+    private boolean emprestimo;// true = emprestado; false = livre
+    private boolean reserva; // true = reservado; false = livre
     private String categoria;
     private int ano;
 
 
-    public Livro(String titulo, String autor, String editora, String ISBN, int status, String categoria, int ano) {
+    public Livro(String titulo, String autor, String editora, String ISBN, String categoria, int ano) {
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
         this.ISBN = ISBN;
         this.categoria = categoria;
         this.ano = ano;
-        this.status = status;
 
     }
 
     public String getTitulo() {
         return titulo;
     }
-
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
@@ -56,9 +55,6 @@ public class Livro {
     }
 
 
-
-
-
     public String getCategoria() {
         return this.categoria;
     }
@@ -75,29 +71,37 @@ public class Livro {
         this.ano = ano;
     }
 
-
-    //verifica se o livro está disponível
-    public String  getStatus() {
-        if (status == 0) {
-            return "Livre";
-        } else if (status == 1) {
+    public String isEmprestimo() {
+        if (emprestimo) {
             return "Emprestado";
         } else {
-            return "Reservado";
+            return "Livre";
         }
+
+    }
+
+    public void setEmprestimo(boolean emprestimo) {
+        this.emprestimo = emprestimo;
+    }
+
+    public String isReserva() {
+        if (reserva) {
+            return "Reservado";
+        } else {
+            return "Livre";
+        }
+
+    }
+
+    public void setReserva(boolean reserva) {
+        this.reserva = reserva;
     }
 
 
-    public void liberarLivro(){
-        this.status = 0;
-    }
 
-    public void emprestarLivro(){
-        this.status = 1;
-    }
 
-    public void reservarLivro(){
-        this.status = 2;
-    }
+
+
+
 
 }
