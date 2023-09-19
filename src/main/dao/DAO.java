@@ -7,6 +7,7 @@ public class DAO {
     private static EmprestimoDAO emprestimoDAOinstance;
     private static LivroDAO livroDAOinstance;
     private static UsuarioDAO usuarioDAOinstance;
+    private static ReservaDAO reservaDAOinstance;
 
     public static AdministradorDAO getAdministradorDAO() {
         if(administradorDAOinstance == null){
@@ -42,5 +43,12 @@ public class DAO {
             usuarioDAOinstance = new UsuarioDAO();
         }
         return usuarioDAOinstance;
+    }
+
+    public static ReservaDAO getReservaDAOinstance() {
+        if (reservaDAOinstance == null){
+            reservaDAOinstance = new ReservaDAO();
+        }
+        return reservaDAOinstance;
     }
 }
