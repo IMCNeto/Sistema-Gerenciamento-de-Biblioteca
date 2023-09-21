@@ -97,11 +97,17 @@ public class Livro {
         this.reserva = reserva;
     }
 
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Livro{" +
+                "titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", editora='" + editora + '\'' +
+                ", ISBN='" + ISBN + '\'' +
+                ", emprestimo=" + emprestimo +
+                ", reserva=" + reserva +
+                ", categoria='" + categoria + '\'' +
+                ", ano=" + ano +
+                '}';
+    }
 }
