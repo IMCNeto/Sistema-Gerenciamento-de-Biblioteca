@@ -5,7 +5,7 @@ import main.model.Usuario;
 
 import java.util.List;
 
-public interface EmprestimoCRUD extends CRUD<Emprestimo>{
+public interface EmprestimoCRUD extends CRUD<Emprestimo, Exception>{
     public Emprestimo create(Emprestimo obj);
 
     public List<Emprestimo> read();
@@ -14,7 +14,7 @@ public interface EmprestimoCRUD extends CRUD<Emprestimo>{
 
     public List<Emprestimo> findbyUser(Usuario user);
 
-    public void delete(Emprestimo obj);
+    public void delete(Emprestimo obj) throws Exception;
 
     public void deleteMany();
 

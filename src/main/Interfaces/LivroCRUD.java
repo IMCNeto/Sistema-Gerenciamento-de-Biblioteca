@@ -5,14 +5,14 @@ import main.model.Livro;
 
 import java.util.List;
 
-public interface LivroCRUD extends CRUD<Livro>{
+public interface LivroCRUD extends CRUD<Livro, Exception>{
     public Livro create(Livro obj);
 
     public List<Livro> read();
 
     public Livro readID(String isbn);
 
-    public void delete(Livro obj);
+    public void delete(Livro obj) throws Exception;
 
     public void deleteMany();
 }
