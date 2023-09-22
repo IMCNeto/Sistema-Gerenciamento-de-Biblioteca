@@ -45,7 +45,7 @@ public class DAO {
         return usuarioDAOinstance;
     }
 
-    public static ReservaDAO getReservaDAOinstance() {
+    public static ReservaDAO getReservaDAO() {
         if (reservaDAOinstance == null){
             reservaDAOinstance = new ReservaDAO();
         }
