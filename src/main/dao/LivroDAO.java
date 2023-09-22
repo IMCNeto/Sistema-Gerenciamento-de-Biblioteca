@@ -46,16 +46,29 @@ public class LivroDAO {
     }
 
 
-    public Livro update(Livro obj){
-        int index = this.lista.indexOf(obj);
-        this.lista.set(index,obj);
-        return obj;
+    public Livro update(Livro obj) throws Exception{
+
+        try {
+            int index = this.lista.indexOf(obj);
+
+            this.lista.set(index, obj);
+            return obj;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Atualizar um Livro");
+
+        }
 
     }
 
 
-    public void delete(Livro obj){
-        this.lista.remove(obj);
+    public void delete(Livro obj) throws Exception{
+        try {
+            this.lista.remove(obj);
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Deletar um Livro");
+        }
     }
 
     public void deleteMany(){

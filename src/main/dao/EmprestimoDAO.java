@@ -65,8 +65,14 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
 
 
-    public void delete(Emprestimo obj){
-        this.lista.remove(obj);
+    public void delete(Emprestimo obj) throws Exception{
+
+        try {
+            this.lista.remove(obj);
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Deletar um Empréstimo");
+        }
     }
 
     public void deleteMany(){

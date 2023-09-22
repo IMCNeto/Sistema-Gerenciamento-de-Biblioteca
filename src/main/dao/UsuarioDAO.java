@@ -44,16 +44,26 @@ public class UsuarioDAO implements UsuarioCRUD {
         return null;
     }
     @Override
-    public Usuario update(Usuario obj) {
-        int index = this.lista.indexOf(obj);
-        this.lista.set(index,obj);
-        return obj;
+    public Usuario update(Usuario obj) throws Exception {
+        try {
+            int index = this.lista.indexOf(obj);
+            this.lista.set(index, obj);
+            return obj;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Atualizar Usuário");
+        }
     }
-
     @Override
     //Deleta um objeto;
-    public void delete(Usuario obj) {
-        this.lista.remove(obj);
+    public void delete(Usuario obj) throws Exception {
+        try {
+            this.lista.remove(obj);
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Deletar Usuário");
+        }
+
     }
 
     @Override

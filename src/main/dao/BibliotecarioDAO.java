@@ -43,16 +43,26 @@ public class BibliotecarioDAO implements BibliotecarioCRUD {
     }
 
     @Override
-    public Bibliotecario update(Bibliotecario obj) {
-        int index = this.lista.indexOf(obj);
-        this.lista.set(index,obj);
-        return obj;
+    public Bibliotecario update(Bibliotecario obj) throws Exception {
+        try {
+            int index = this.lista.indexOf(obj);
+            this.lista.set(index,obj);
+            return obj;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Atualizar Bibliotecário");
+        }
     }
 
     @Override
-    public void delete(Bibliotecario obj) {
-        this.lista.remove(obj);
+    public void delete(Bibliotecario obj) throws Exception{
 
+        try {
+            this.lista.remove(obj);
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Deletar Bibliotecário");
+        }
     }
 
     @Override

@@ -44,16 +44,27 @@ public class AdministradorDAO implements AdministradorCRUD {
     }
 
     @Override
-    public Administrador update(Administrador adm){
-        int index = this.lista.indexOf(adm);
-        this.lista.set(index,adm);
-        return adm;
+    public Administrador update(Administrador adm) throws Exception{
+        try {
+            int index = this.lista.indexOf(adm);
+            this.lista.set(index,adm);
+            return adm;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Atualizar Administrador");
+        }
 
     }
 
 
-    public void delete(Administrador adm){
-        this.lista.remove(adm);
+    public void delete(Administrador adm) throws Exception{
+
+        try {
+            this.lista.remove(adm);
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Deletar Administrador");
+        }
     }
 
     public void deleteMany(){

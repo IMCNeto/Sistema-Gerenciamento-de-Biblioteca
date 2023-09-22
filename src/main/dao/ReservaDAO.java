@@ -43,15 +43,25 @@ public class ReservaDAO implements ReservaCRUD {
     }
 
     @Override
-    public void update(int index,boolean novoStatus) {
-        if(this.lista.get(index) != null){
-            this.lista.get(index).setStatus(novoStatus);
+    public void update(int index,boolean novoStatus) throws Exception {
+        try {
+            if(this.lista.get(index) != null){
+                this.lista.get(index).setStatus(novoStatus);
+            }
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Atualizar uma Reserva");
         }
     }
 
     @Override
-    public void delete(Reserva obj) {
-        this.lista.remove(obj);
+    public void delete(Reserva obj) throws Exception {
+        try {
+            this.lista.remove(obj);
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Deletar uma Reserva");
+        }
 
     }
 
