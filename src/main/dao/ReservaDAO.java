@@ -35,15 +35,15 @@ public class ReservaDAO implements ReservaCRUD {
     }
 
     @Override
-    public Reserva findReserva(Usuario usuario, Livro livro) {
+    public int findReserva(Usuario usuario, Livro livro) {
         for(Reserva x : this.lista)
             if(x.getLivro().equals(livro) && x.getUsuario().equals(usuario))
-                return x;
-        return null;
+                return x.getId();
+        return -1;
     }
 
     @Override
-    public void update(int index,boolean novoStatus) throws Exception {
+    public void update(int index,boolean novoStatus) throws Exception{
         try {
             if(this.lista.get(index) != null){
                 this.lista.get(index).setStatus(novoStatus);
