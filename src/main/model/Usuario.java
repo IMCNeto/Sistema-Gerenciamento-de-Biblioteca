@@ -1,11 +1,13 @@
 package main.model;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class Usuario {
     private String nome;
     private int telefone;
     private String endereco;
     private int num_id;
-    private int situacao; // 0 = Livre; 1 = Bloqueado;
     private int multa;
 
 
@@ -49,40 +51,26 @@ public class Usuario {
     }
 
 
-    //verifica se o usuário está bloqueado
-    public String getSituacao() {
-        if (situacao == 0){
-            return "Liberado";
-        }
-        else {
-            return "Bloqueado";
-        }
-
-    }
-
-
     //retorna multa do usuário(Dias)
     public int getMulta() {
-        return multa;
+        return this.multa;
     }
-
 
     //define multa do usuário
     public void setMulta(int multa) {
         this.multa = multa;
     }
 
+    public int calcularMulta(LocalDate dataDevolver, LocalDate dataAtual){
+        long d1 = ChronoUnit.DAYS.between(dataDevolver, dataAtual); // subtrai a diferença entre as datas
+        if (d1 <= 0){
+            setMulta(this.multa);
+        }
+        else {
+            this.multa += (int)d1 * 2;
 
-    //bloqueia usuário
-    public void bloquearUsuario(){
-        this.situacao = 1;
-
-    }
-
-
-    //desbloqueia usuário
-    public void liberarUsuario(){
-        this.situacao = 0;
+        }
+        return this.multa;
     }
 
     @Override
@@ -92,7 +80,6 @@ public class Usuario {
                 ", telefone=" + telefone +
                 ", endereco='" + endereco + '\'' +
                 ", num_id=" + num_id +
-                ", situacao=" + situacao +
                 ", multa=" + multa +
                 '}';
     }
