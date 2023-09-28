@@ -24,9 +24,15 @@ public class UsuarioDAO implements UsuarioCRUD {
     }
 
     @Override
-    public Usuario create(Usuario obj) {
-        this.lista.add(obj);
-        return obj;
+    public Usuario create(Usuario obj) throws Exception {
+        try {
+            this.lista.add(obj);
+            return obj;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao criar Usuário");
+        }
+
     }
 
     @Override
@@ -58,19 +64,30 @@ public class UsuarioDAO implements UsuarioCRUD {
     }
     @Override
     // lê toda lista;
-    public ArrayList<Usuario> read() {
-        return this.lista;
+    public ArrayList<Usuario> read() throws Exception {
+        try {
+            return this.lista;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao buscar lista de usuários");
+        }
+
     }
 
     @Override
-    public Usuario readID(int id) {
-        for (Usuario usuario : this.lista){
-            if (usuario.getNum_id() == id){
-                return usuario;
-            }
+    public Usuario readID(int id) throws Exception {
+        try {
+            for (Usuario usuario : this.lista){
+                if (usuario.getNum_id() == id){
+                    return usuario;
+                }
 
+            }
+            return null;
         }
-        return null;
+        catch (Exception e){
+            throw new Exception("Erro ao encontrar usuário");
+        }
     }
 
     @Override
@@ -87,8 +104,13 @@ public class UsuarioDAO implements UsuarioCRUD {
 
     @Override
     //limpa toda lista;
-    public void deleteMany() {
-        this.lista.clear();
-        this.prox_id = 0;
+    public void deleteMany() throws Exception {
+        try {
+            this.lista.clear();
+            this.prox_id = 0;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao deletar lista de usuários");
+        }
     }
 }
