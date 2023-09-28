@@ -3,19 +3,16 @@ package main.Interfaces;
 import main.model.Emprestimo;
 import main.model.Usuario;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface EmprestimoCRUD extends CRUD<Emprestimo, Exception>{
-    public Emprestimo create(Emprestimo obj);
 
-    public List<Emprestimo> read();
+    public List<Emprestimo> atrasados(LocalDate dataAtual);
 
     public Emprestimo findbyID(int id);
 
     public List<Emprestimo> findbyUser(Usuario user);
 
-    public void delete(Emprestimo obj) throws Exception;
-
-    public void deleteMany();
 
 }
