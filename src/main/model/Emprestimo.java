@@ -1,5 +1,7 @@
 package main.model;
 
+import main.dao.EmprestimoDAO;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -16,13 +18,25 @@ public class Emprestimo {
 
 
     public Emprestimo(String datEmprestimo, Usuario usuario,Livro livro) {
-        DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        this.dataEmprestimo = LocalDate.parse(datEmprestimo,formatter);
-        this.dataDevolver =  dataEmprestimo.plus(Period.ofDays(7));
-        this.usuario = usuario;
-        this.livro = livro;
-        this.status = 0;
-    }
+            if (usuario.getMulta() == 0){
+                this.usuario = usuario;
+            }
+            else{
+                throw new IllegalArgumentException("Usuário não pode realizar Empréstimo");
+            }
+
+            if(livro.isEmprestimo().equals("Livre")) {
+                this.livro = livro;
+            }
+            else {
+                throw new IllegalArgumentException("Livro não pode ser emprestado");
+            }
+            DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            this.dataEmprestimo = LocalDate.parse(datEmprestimo,formatter);
+            this.dataDevolver =  dataEmprestimo.plus(Period.ofDays(7));
+            this.status = 0;
+                }
+
 
 
     public LocalDate getDataEmprestimo() {
@@ -64,36 +78,11 @@ public class Emprestimo {
     }
 
 
-    public int calcularMulta(LocalDate dataDevolver){
-        LocalDate hoje  = LocalDate.now();//recolhe a data atual
-        long d1 = ChronoUnit.DAYS.between(dataDevolver, hoje); // subtrai a diferença entre as datas
-        if (d1 <= 0){
-            return 0;
-        }
-        else {
-            return (int)d1;
-        }
-    }
-
-    public Emprestimo realizarEmprestimo(){
-        if (usuario.getMulta() == 0){
-            if(livro.isEmprestimo().equals("Livre")) {
-                this.status = 0;
-                return this;
-            }
-        }
-        return null;
-
-    }
-
-
-
     //método para finalizar o empréstimo
-    public void finalizarEmprestimo(){
+    public void finalizarEmprestimo(LocalDate dataAtual){
         this.status = 1;
         livro.setEmprestimo(false);
-        int multa = calcularMulta(dataDevolver);
-        usuario.setMulta(multa);
+        usuario.calcularMulta(dataDevolver,dataAtual);
     }
 
     @Override
