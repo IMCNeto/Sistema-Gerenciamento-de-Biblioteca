@@ -1,9 +1,11 @@
 package main.dao;
 
 import main.Interfaces.UsuarioCRUD;
+import main.model.Emprestimo;
 import main.model.Usuario;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAO implements UsuarioCRUD {
 
@@ -28,6 +30,33 @@ public class UsuarioDAO implements UsuarioCRUD {
     }
 
     @Override
+    public Usuario update(Usuario obj) throws Exception {
+        try {
+            int index = this.lista.indexOf(obj);
+            this.lista.set(index, obj);
+            return obj;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Atualizar Usuário");
+        }
+    }
+
+    @Override
+    public List<Usuario> usuariosBloqueados(List<Emprestimo> emp) throws Exception {
+        try {
+            List<Usuario> listaUsuariosBloqueados = new ArrayList<Usuario>();
+            for(Emprestimo obj : emp){
+                listaUsuariosBloqueados.add(obj.getUsuario());
+                update(obj.getUsuario());
+            }
+            return listaUsuariosBloqueados;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao buscar lista de usuários bloqueados");
+        }
+
+    }
+    @Override
     // lê toda lista;
     public ArrayList<Usuario> read() {
         return this.lista;
@@ -43,17 +72,7 @@ public class UsuarioDAO implements UsuarioCRUD {
         }
         return null;
     }
-    @Override
-    public Usuario update(Usuario obj) throws Exception {
-        try {
-            int index = this.lista.indexOf(obj);
-            this.lista.set(index, obj);
-            return obj;
-        }
-        catch (Exception e){
-            throw new Exception("Erro ao Atualizar Usuário");
-        }
-    }
+
     @Override
     //Deleta um objeto;
     public void delete(Usuario obj) throws Exception {

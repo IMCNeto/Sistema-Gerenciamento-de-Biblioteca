@@ -1,12 +1,13 @@
 package main.dao;
 
 
+import main.Interfaces.LivroCRUD;
 import main.model.Livro;
 
 
 import java.util.ArrayList;
 import java.util.List;
-public class LivroDAO {
+public class LivroDAO implements LivroCRUD {
 
     private ArrayList<Livro> lista;
     private int proxId;
@@ -22,21 +23,21 @@ public class LivroDAO {
     }
 
 
-
+    @Override
     public Livro create(Livro objeto){
         this.lista.add(objeto);
         return objeto;
 
     }
 
-
+    @Override
     public List<Livro> read(){
         return this.lista;
     }
 
 
-
-    public Livro readID(String isbn) {
+    @Override
+    public Livro readISBN(String isbn) {
         for (Livro obj : this.lista){
             if (obj.getISBN().equals(isbn)){
                 return obj;
@@ -45,7 +46,38 @@ public class LivroDAO {
         return null;
     }
 
+    @Override
+    public Livro readTitulo(String titulo){
+        for (Livro obj : this.lista){
+            if (obj.getTitulo().equals(titulo)){
+                return obj;
+            }
+        }
+        return null;
+    }
 
+    @Override
+    public Livro readAutor(String autor){
+        for (Livro obj : this.lista){
+            if (obj.getAutor().equals(autor)){
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Livro readCategoria(String categoria){
+        for (Livro obj : this.lista){
+            if (obj.getCategoria().equals(categoria)){
+                return obj;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
     public Livro update(Livro obj) throws Exception{
 
         try {
@@ -61,7 +93,7 @@ public class LivroDAO {
 
     }
 
-
+    @Override
     public void delete(Livro obj) throws Exception{
         try {
             this.lista.remove(obj);
@@ -71,6 +103,7 @@ public class LivroDAO {
         }
     }
 
+    @Override
     public void deleteMany(){
         this.lista.clear();
         this.proxId = 0;

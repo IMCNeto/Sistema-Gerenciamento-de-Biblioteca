@@ -56,7 +56,7 @@ public class AdministradorDAO implements AdministradorCRUD {
 
     }
 
-
+    @Override
     public void delete(Administrador adm) throws Exception{
 
         try {
@@ -67,6 +67,7 @@ public class AdministradorDAO implements AdministradorCRUD {
         }
     }
 
+    @Override
     public void deleteMany(){
         this.lista.clear();
         this.proxId = 0;
