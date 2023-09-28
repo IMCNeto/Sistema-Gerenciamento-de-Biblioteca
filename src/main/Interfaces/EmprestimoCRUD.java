@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface EmprestimoCRUD extends CRUD<Emprestimo, Exception>{
 
-    public List<Emprestimo> atrasados(LocalDate dataAtual);
+    public List<Emprestimo> atrasados(LocalDate dataAtual) throws Exception;
 
-    public Emprestimo findbyID(int id);
+    public Emprestimo findbyID(int id) throws Exception;
 
-    public List<Emprestimo> findbyUser(Usuario user);
+    public List<Emprestimo> findbyUser(Usuario user) throws Exception;
 
 
 }

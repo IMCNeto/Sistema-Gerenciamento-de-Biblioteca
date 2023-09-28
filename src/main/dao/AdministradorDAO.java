@@ -22,25 +22,42 @@ public class AdministradorDAO implements AdministradorCRUD {
 
 
     @Override
-    public Administrador create(Administrador objeto){
-        this.lista.add(objeto);
-        return objeto;
-
-    }
-
-    @Override
-    public List<Administrador> read(){
-        return this.lista;
-    }
-
-    @Override
-    public Administrador readID(int id) {
-        for (Administrador adm : this.lista){
-            if (adm.getId() == id){
-                return adm;
-            }
+    public Administrador create(Administrador objeto) throws Exception {
+        try {
+            this.lista.add(objeto);
+            return objeto;
         }
-        return null;
+        catch (Exception e){
+            throw new Exception("Erro ao criar Administrador");
+        }
+
+
+    }
+
+    @Override
+    public List<Administrador> read() throws Exception {
+        try {
+            return this.lista;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao buscar lista de Administradores");
+        }
+    }
+
+    @Override
+    public Administrador readID(int id) throws Exception {
+        try {
+            for (Administrador adm : this.lista){
+                if (adm.getId() == id){
+                    return adm;
+                }
+            }
+            return null;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao buscar Administrador por ID");
+        }
+
     }
 
     @Override
@@ -68,9 +85,15 @@ public class AdministradorDAO implements AdministradorCRUD {
     }
 
     @Override
-    public void deleteMany(){
-        this.lista.clear();
-        this.proxId = 0;
+    public void deleteMany() throws Exception {
+        try {
+            this.lista.clear();
+            this.proxId = 0;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao deletar Lista de Administradores");
+        }
+
     }
 
 }

@@ -19,6 +19,7 @@ public class UsuarioDAO implements UsuarioCRUD {
 
     }
 
+
     private int getProx_id() {
         return this.prox_id++;
     }

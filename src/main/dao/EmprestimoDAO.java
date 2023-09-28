@@ -27,61 +27,97 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
 
     @Override
-    public List<Emprestimo> atrasados(LocalDate dataAtual){
-        List<Emprestimo> listaEmprestimosAtrasados = new ArrayList<Emprestimo>();
-        for(Emprestimo x : this.lista){
-            if(x.getUsuario().calcularMulta(x.getDataDevolver(),dataAtual) > 0){
-                listaEmprestimosAtrasados.add(x);
+    public List<Emprestimo> atrasados(LocalDate dataAtual) throws Exception {
+        try {
+            List<Emprestimo> listaEmprestimosAtrasados = new ArrayList<Emprestimo>();
+            for(Emprestimo x : this.lista){
+                if(x.getUsuario().calcularMulta(x.getDataDevolver(),dataAtual) > 0){
+                    listaEmprestimosAtrasados.add(x);
+                }
             }
+            return listaEmprestimosAtrasados;
         }
-        return listaEmprestimosAtrasados;
+        catch (Exception e){
+            throw new Exception("Erro ao buscar lista de empréstimos atrasados");
+        }
+
     }
 
     @Override
-    public Emprestimo create(Emprestimo objeto){
-        if (objeto != null) {
-            objeto.setId(this.getProxId());
-            this.lista.add(objeto);
-            return objeto;
+    public Emprestimo create(Emprestimo objeto) throws Exception {
+        try {
+            if (objeto != null) {
+                objeto.setId(this.getProxId());
+                this.lista.add(objeto);
+                return objeto;
+            }
+            return null;
         }
-        return null;
+        catch (Exception e){
+            throw new Exception("Erro ao criar empréstimo");
+        }
+
 
     }
 
     @Override
     public Emprestimo update(Emprestimo obj) throws Exception{
+        try {
             int index = this.lista.indexOf(obj);
             this.lista.set(index, obj);
             return obj;
-
-    }
-
-    @Override
-    public List<Emprestimo> read(){
-        return this.lista;
-    }
-
-    @Override
-    public Emprestimo findbyID(int index){
-        for(Emprestimo x : this.lista){
-            if(x.getId() == index){
-                return x;
-            }
         }
-        return null;
+        catch (Exception e){
+            throw new Exception("Erro ao atualizar empréstimo");
+        }
+
+
+    }
+
+    @Override
+    public List<Emprestimo> read() throws Exception {
+        try {
+            return this.lista;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao buscar lista de empréstimos");
+        }
+
+    }
+
+    @Override
+    public Emprestimo findbyID(int index) throws Exception {
+        try {
+            for(Emprestimo x : this.lista){
+                if(x.getId() == index){
+                    return x;
+                }
+            }
+            return null;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao buscar empréstimo por ID");
+        }
+
     }
 
 
     //Retorna lista com todos os empréstimos de um usuário
     @Override
-    public List<Emprestimo> findbyUser(Usuario usuario) {
-        List<Emprestimo> emp_usu = new ArrayList<Emprestimo>();
-        for (Emprestimo obj : this.lista){
-            if (obj.getUsuario() == usuario){
-                emp_usu.add(obj);
+    public List<Emprestimo> findbyUser(Usuario usuario) throws Exception {
+        try {
+            List<Emprestimo> emp_usu = new ArrayList<Emprestimo>();
+            for (Emprestimo obj : this.lista){
+                if (obj.getUsuario() == usuario){
+                    emp_usu.add(obj);
+                }
             }
+            return emp_usu;
         }
-        return emp_usu;
+        catch (Exception e){
+            throw new Exception("Erro ao buscar empréstimos por usuário");
+        }
+
     }
 
     @Override
@@ -96,9 +132,15 @@ public class EmprestimoDAO implements EmprestimoCRUD {
     }
 
     @Override
-    public void deleteMany(){
-        this.lista.clear();
-        this.proxId = 0;
+    public void deleteMany() throws Exception {
+        try {
+            this.lista.clear();
+            this.proxId = 0;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao deletar lista de empréstimos");
+        }
+
     }
 
 }

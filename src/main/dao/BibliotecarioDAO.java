@@ -22,24 +22,41 @@ public class BibliotecarioDAO implements BibliotecarioCRUD {
     }
 
     @Override
-    public Bibliotecario create(Bibliotecario obj) {
-        this.lista.add(obj);
-        return obj;
-    }
-
-    @Override
-    public List<Bibliotecario> read() {
-        return this.lista;
-    }
-
-    @Override
-    public Bibliotecario readID(int id) {
-        for (Bibliotecario bibliotecario : this.lista){
-            if (bibliotecario.getId() == id){
-                return bibliotecario;
-            }
+    public Bibliotecario create(Bibliotecario obj) throws Exception {
+        try {
+            this.lista.add(obj);
+            return obj;
         }
-        return null;
+        catch (Exception e){
+            throw new Exception("Erro ao criar bibliotecário");
+        }
+
+    }
+
+    @Override
+    public List<Bibliotecario> read() throws Exception {
+        try {
+            return this.lista;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao buscar lista de bibliotecários");
+        }
+    }
+
+    @Override
+    public Bibliotecario readID(int id) throws Exception {
+        try {
+            for (Bibliotecario bibliotecario : this.lista){
+                if (bibliotecario.getId() == id){
+                    return bibliotecario;
+                }
+            }
+            return null;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao buscar bibliotecário por ID");
+        }
+
     }
 
     @Override
@@ -66,9 +83,15 @@ public class BibliotecarioDAO implements BibliotecarioCRUD {
     }
 
     @Override
-    public void deleteMany() {
-        this.lista.clear();
-        this.prox_id = 0;
+    public void deleteMany() throws Exception {
+        try {
+            this.lista.clear();
+            this.prox_id = 0;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Deletar Lista de Bibliotecários");
+        }
+
 
     }
 }

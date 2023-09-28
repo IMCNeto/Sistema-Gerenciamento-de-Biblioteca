@@ -7,6 +7,8 @@ import main.model.Livro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 public class LivroDAO implements LivroCRUD {
 
     private ArrayList<Livro> lista;
@@ -24,56 +26,92 @@ public class LivroDAO implements LivroCRUD {
 
 
     @Override
-    public Livro create(Livro objeto){
-        this.lista.add(objeto);
-        return objeto;
-
-    }
-
-    @Override
-    public List<Livro> read(){
-        return this.lista;
-    }
-
-
-    @Override
-    public Livro readISBN(String isbn) {
-        for (Livro obj : this.lista){
-            if (obj.getISBN().equals(isbn)){
-                return obj;
-            }
+    public Livro create(Livro objeto) throws Exception {
+        try {
+            this.lista.add(objeto);
+            return objeto;
         }
-        return null;
+        catch (Exception e){
+            throw new Exception("Erro ao criar Livro");
+        }
+
+
     }
 
     @Override
-    public Livro readTitulo(String titulo){
-        for (Livro obj : this.lista){
-            if (obj.getTitulo().equals(titulo)){
-                return obj;
-            }
+    public List<Livro> read() throws Exception {
+        try {
+            return this.lista;
         }
-        return null;
+        catch (Exception e){
+            throw new Exception("Erro ao buscar lista de Livros");
+        }
+
+    }
+
+
+    @Override
+    public Livro readISBN(String isbn) throws Exception {
+        try {
+            for (Livro obj : this.lista){
+                if (obj.getISBN().equals(isbn)){
+                    return obj;
+                }
+            }
+            return null;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao procurar Livro por ISBN");
+        }
+
     }
 
     @Override
-    public Livro readAutor(String autor){
-        for (Livro obj : this.lista){
-            if (obj.getAutor().equals(autor)){
-                return obj;
+    public Livro readTitulo(String titulo) throws Exception {
+        try {
+            for (Livro obj : this.lista){
+                if (obj.getTitulo().equals(titulo)){
+                    return obj;
+                }
             }
+            return null;
         }
-        return null;
+        catch (Exception e){
+            throw new Exception("Erro ao procurar Livro por título");
+        }
+
     }
 
     @Override
-    public Livro readCategoria(String categoria){
-        for (Livro obj : this.lista){
-            if (obj.getCategoria().equals(categoria)){
-                return obj;
+    public Livro readAutor(String autor) throws Exception {
+        try {
+            for (Livro obj : this.lista){
+                if (obj.getAutor().equals(autor)){
+                    return obj;
+                }
             }
+            return null;
         }
-        return null;
+        catch (Exception e){
+            throw new Exception("Erro ao procurar Livro por autor");
+        }
+
+    }
+
+    @Override
+    public Livro readCategoria(String categoria) throws Exception {
+        try {
+            for (Livro obj : this.lista){
+                if (obj.getCategoria().equals(categoria)){
+                    return obj;
+                }
+            }
+            return null;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao procurar Livro por Categoria");
+        }
+
     }
 
 
@@ -104,9 +142,15 @@ public class LivroDAO implements LivroCRUD {
     }
 
     @Override
-    public void deleteMany(){
-        this.lista.clear();
-        this.proxId = 0;
+    public void deleteMany() throws Exception {
+        try {
+            this.lista.clear();
+            this.proxId = 0;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao deletar lista de Livros");
+        }
+
     }
 
 }
