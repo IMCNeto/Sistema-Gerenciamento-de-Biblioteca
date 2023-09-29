@@ -90,12 +90,8 @@ public class Livro {
         DAO.getLivroDAO().update(this);
     }
 
-    public String isReserva() {
-        if (reserva) {
-            return "Reservado";
-        } else {
-            return "Livre";
-        }
+    public boolean isReserva() {
+        return this.reserva;
 
     }
 
