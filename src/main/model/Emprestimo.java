@@ -18,7 +18,7 @@ public class Emprestimo {
         private int id;
 
 
-    public Emprestimo(String datEmprestimo, Usuario usuario,Livro livro) {
+    public Emprestimo(String datEmprestimo, Usuario usuario,Livro livro) throws Exception {
             if (usuario.getMulta() == 0){
                 this.usuario = usuario;
             }
@@ -32,6 +32,11 @@ public class Emprestimo {
             else {
                 throw new IllegalArgumentException("Livro não pode ser emprestado");
             }
+
+            if (DAO.getEmprestimoDAO().findbyUserActive(usuario).size() >= 3){
+                throw new IllegalArgumentException("Usuário atingiu número máximo de empréstimos");
+            }
+
             DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
             this.dataEmprestimo = LocalDate.parse(datEmprestimo,formatter);
             this.dataDevolver =  dataEmprestimo.plus(Period.ofDays(7));
