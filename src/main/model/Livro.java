@@ -80,12 +80,8 @@ public class Livro {
         DAO.getLivroDAO().update(this);
     }
 
-    public String isEmprestimo() {
-        if (emprestimo) {
-            return "Emprestado";
-        } else {
-            return "Livre";
-        }
+    public boolean isEmprestimo() {
+        return this.emprestimo;
 
     }
 

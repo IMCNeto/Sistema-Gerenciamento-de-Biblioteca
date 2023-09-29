@@ -7,13 +7,13 @@ import java.time.temporal.ChronoUnit;
 
 public class Usuario {
     private String nome;
-    private int telefone;
+    private String telefone;
     private String endereco;
     private int num_id;
     private int multa;
 
 
-    public Usuario(String nome, int telefone, String endereco) {
+    public Usuario(String nome, String telefone, String endereco) {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
@@ -28,11 +28,11 @@ public class Usuario {
         DAO.getUsuarioDAO().update(this);
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) throws Exception {
+    public void setTelefone(String telefone) throws Exception {
         this.telefone = telefone;
         DAO.getUsuarioDAO().update(this);
     }

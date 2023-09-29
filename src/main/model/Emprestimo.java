@@ -26,7 +26,7 @@ public class Emprestimo {
                 throw new IllegalArgumentException("Usuário não pode realizar Empréstimo");
             }
 
-            if(livro.isEmprestimo().equals("Livre")) {
+            if(!livro.isEmprestimo()) {
                 this.livro = livro;
             }
             else {
@@ -36,7 +36,7 @@ public class Emprestimo {
             this.dataEmprestimo = LocalDate.parse(datEmprestimo,formatter);
             this.dataDevolver =  dataEmprestimo.plus(Period.ofDays(7));
             this.status = 0;
-                }
+    }
 
 
 
