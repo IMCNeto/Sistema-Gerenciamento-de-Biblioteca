@@ -71,8 +71,9 @@ public class EmprestimoDAO implements EmprestimoCRUD {
             throw new Exception("Erro ao atualizar empréstimo");
         }
 
-
     }
+
+
 
     @Override
     public List<Emprestimo> read() throws Exception {
@@ -117,6 +118,26 @@ public class EmprestimoDAO implements EmprestimoCRUD {
         }
         catch (Exception e){
             throw new Exception("Erro ao buscar empréstimos por usuário");
+        }
+
+    }
+
+
+    //Retorna lista com os empréstimos ativos de um usuário
+    @Override
+    public List<Emprestimo> findbyUserActive(Usuario usuario) throws Exception{
+        try {
+            List<Emprestimo> emp_active = new ArrayList<>();
+            for (Emprestimo obj : this.lista){
+                if (obj.getUsuario() == usuario & obj.getStatus() == 0){
+                    emp_active.add(obj);
+
+                }
+            }
+            return emp_active;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao encontrar empréstimos ativos do usuário");
         }
 
     }
