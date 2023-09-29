@@ -88,6 +88,16 @@ public class Emprestimo {
     }
 
 
+    public void renovarEmprestimo(LocalDate dataAtual) throws Exception {
+        if (!this.livro.isReserva() & dataAtual.equals(this.dataDevolver)){
+            this.dataDevolver = this.dataDevolver.plus(Period.ofDays(7));
+            DAO.getEmprestimoDAO().update(this);
+        }
+        else{
+            throw new IllegalArgumentException("Renovação não pode ser realizada");
+        }
+    }
+
     //método para finalizar o empréstimo
     public void finalizarEmprestimo(LocalDate dataAtual) throws Exception {
         this.status = 1;
