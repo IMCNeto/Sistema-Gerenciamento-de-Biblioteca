@@ -47,8 +47,8 @@ public class EmprestimoDAO implements EmprestimoCRUD {
     public Emprestimo create(Emprestimo objeto) throws Exception {
         try {
             if (objeto != null) {
-                objeto.setId(this.getProxId());
                 this.lista.add(objeto);
+                objeto.setId(this.getProxId());
                 return objeto;
             }
             return null;
@@ -84,6 +84,7 @@ public class EmprestimoDAO implements EmprestimoCRUD {
         }
 
     }
+
 
     @Override
     public Emprestimo findbyID(int index) throws Exception {

@@ -16,7 +16,7 @@ public class AdministradorDAO implements AdministradorCRUD {
 
     }
 
-    private int getProxId(){
+    private int getProximoID(){
         return this.proxId++;
     }
 
@@ -24,6 +24,7 @@ public class AdministradorDAO implements AdministradorCRUD {
     @Override
     public Administrador create(Administrador objeto) throws Exception {
         try {
+            objeto.setId(this.getProximoID());
             this.lista.add(objeto);
             return objeto;
         }

@@ -24,6 +24,7 @@ public class BibliotecarioDAO implements BibliotecarioCRUD {
     @Override
     public Bibliotecario create(Bibliotecario obj) throws Exception {
         try {
+            obj.setId(this.getProx_id());
             this.lista.add(obj);
             return obj;
         }

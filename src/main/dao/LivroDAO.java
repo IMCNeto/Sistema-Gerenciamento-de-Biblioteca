@@ -27,13 +27,12 @@ public class LivroDAO implements LivroCRUD {
 
     @Override
     public Livro create(Livro objeto) throws Exception {
-        try {
+
             this.lista.add(objeto);
+            objeto.setId(getProxId());
             return objeto;
-        }
-        catch (Exception e){
-            throw new Exception("Erro ao criar Livro");
-        }
+
+
 
 
     }
@@ -118,16 +117,11 @@ public class LivroDAO implements LivroCRUD {
     @Override
     public Livro update(Livro obj) throws Exception{
 
-        try {
             int index = this.lista.indexOf(obj);
-
             this.lista.set(index, obj);
             return obj;
-        }
-        catch (Exception e){
-            throw new Exception("Erro ao Atualizar um Livro");
 
-        }
+
 
     }
 

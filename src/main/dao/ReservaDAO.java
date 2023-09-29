@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReservaDAO implements ReservaCRUD {
-    private List<Reserva> lista;
+    private ArrayList<Reserva> lista;
 
     private int proximoID;
 
@@ -25,13 +25,14 @@ public class ReservaDAO implements ReservaCRUD {
     @Override
     public Reserva create(Reserva obj) throws Exception {
         try {
-            obj.setId(this.getProximoID());
             this.lista.add(obj);
+            obj.setId(getProximoID());
             return obj;
         }
         catch (Exception e){
-            throw new Exception("Erro ao criar nova Reserva");
+            throw new Exception("Erro ao criar Reserva");
         }
+
 
     }
 
@@ -63,15 +64,17 @@ public class ReservaDAO implements ReservaCRUD {
     }
 
     @Override
-    public Reserva update(Reserva obj) throws Exception{
+    public Reserva update(Reserva obj) throws Exception {
         try {
             int index = this.lista.indexOf(obj);
             this.lista.set(index, obj);
             return obj;
         }
         catch (Exception e){
-            throw new Exception("Erro ao Atualizar uma Reserva");
+            throw new Exception("Erro ao atualizar Reserva");
         }
+
+
     }
 
     @Override

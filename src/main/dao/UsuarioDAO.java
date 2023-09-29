@@ -28,6 +28,7 @@ public class UsuarioDAO implements UsuarioCRUD {
     public Usuario create(Usuario obj) throws Exception {
         try {
             this.lista.add(obj);
+            obj.setNum_id(this.getProx_id());
             return obj;
         }
         catch (Exception e){
