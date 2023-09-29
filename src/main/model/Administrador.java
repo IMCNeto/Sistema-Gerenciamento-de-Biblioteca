@@ -8,9 +8,8 @@ public class Administrador {
     private String senha;
 
 
-    public Administrador(String nome, int id,  String senha) {
+    public Administrador(String nome,  String senha) {
         this.nome = nome;
-        this.id = id;
         this.cargo = "Administrador";
         this.senha = senha;
     }

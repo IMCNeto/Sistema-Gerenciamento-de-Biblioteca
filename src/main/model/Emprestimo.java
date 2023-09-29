@@ -1,5 +1,6 @@
 package main.model;
 
+import main.dao.DAO;
 import main.dao.EmprestimoDAO;
 
 import java.time.LocalDate;
@@ -43,9 +44,10 @@ public class Emprestimo {
         return dataEmprestimo;
     }
 
-    public void setDataEmprestimo(String dataEmprestimo) {
+    public void setDataEmprestimo(String dataEmprestimo) throws Exception {
         DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.dataEmprestimo = LocalDate.parse(dataEmprestimo,formatter);
+        DAO.getEmprestimoDAO().update(this);
     }
 
     public LocalDate getDataDevolver() {
@@ -57,32 +59,46 @@ public class Emprestimo {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Usuario usuario) throws Exception {
         this.usuario = usuario;
+        DAO.getEmprestimoDAO().update(this);
     }
 
     public int getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(int status) throws Exception {
         this.status = status;
+        DAO.getEmprestimoDAO().update(this);
     }
 
     public Livro getLivro() {
         return livro;
     }
 
-    public void setLivro(Livro livro) {
+    public void setLivro(Livro livro) throws Exception {
         this.livro = livro;
+        DAO.getEmprestimoDAO().update(this);
     }
 
 
     //método para finalizar o empréstimo
-    public void finalizarEmprestimo(LocalDate dataAtual){
+    public void finalizarEmprestimo(LocalDate dataAtual) throws Exception {
         this.status = 1;
         livro.setEmprestimo(false);
         usuario.calcularMulta(dataDevolver,dataAtual);
+        DAO.getEmprestimoDAO().update(this);
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) throws Exception {
+        this.id = id;
+        DAO.getEmprestimoDAO().update(this);
     }
 
     @Override
@@ -94,13 +110,5 @@ public class Emprestimo {
                 ", livro=" + livro +
                 ", status=" + status +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

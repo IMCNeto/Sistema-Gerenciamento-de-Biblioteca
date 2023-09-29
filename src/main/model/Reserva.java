@@ -1,5 +1,6 @@
 package main.model;
 
+import main.dao.DAO;
 import main.dao.LivroDAO;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class Reserva {
     private boolean status; // True = Aberto; False = Concluído
     private int id;
 
-    public Reserva(Usuario usuario, Livro livro) {
+    public Reserva(Usuario usuario, Livro livro) throws Exception {
         this.usuario = usuario;
         this.livro = livro;
         livro.setReserva(true);
@@ -21,37 +22,42 @@ public class Reserva {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Usuario usuario) throws Exception {
         this.usuario = usuario;
+        DAO.getReservaDAO().update(this);
     }
 
     public Livro getLivro() {
         return livro;
     }
 
-    public void setLivro(Livro livro) {
+    public void setLivro(Livro livro) throws Exception {
         this.livro = livro;
+        DAO.getReservaDAO().update(this);
     }
 
     public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(boolean status) throws Exception {
         this.status = status;
+        DAO.getReservaDAO().update(this);
     }
 
-    public void finalizarReserva(){
+    public void finalizarReserva() throws Exception {
         this.status = false;
         this.livro.setReserva(false);
+        DAO.getReservaDAO().update(this);
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id) throws Exception {
         this.id = id;
+        DAO.getReservaDAO().update(this);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package main.model;
 
+import main.dao.DAO;
+
 public class Livro {
 
     private String titulo;
@@ -10,6 +12,7 @@ public class Livro {
     private boolean reserva; // true = reservado; false = livre
     private String categoria;
     private int ano;
+    private int id;
 
 
     public Livro(String titulo, String autor, String editora, String ISBN, String categoria, int ano) {
@@ -26,32 +29,36 @@ public class Livro {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
+    public void setTitulo(String titulo) throws Exception {
         this.titulo = titulo;
+        DAO.getLivroDAO().update(this);
     }
 
     public String getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(String autor) throws Exception {
         this.autor = autor;
+        DAO.getLivroDAO().update(this);
     }
 
     public String getEditora() {
         return editora;
     }
 
-    public void setEditora(String editora) {
+    public void setEditora(String editora) throws Exception {
         this.editora = editora;
+        DAO.getLivroDAO().update(this);
     }
 
     public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(String ISBN) {
+    public void setISBN(String ISBN) throws Exception {
         this.ISBN = ISBN;
+        DAO.getLivroDAO().update(this);
     }
 
 
@@ -59,16 +66,18 @@ public class Livro {
         return this.categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(String categoria) throws Exception {
         this.categoria = categoria;
+        DAO.getLivroDAO().update(this);
     }
 
     public int getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(int ano) throws Exception {
         this.ano = ano;
+        DAO.getLivroDAO().update(this);
     }
 
     public String isEmprestimo() {
@@ -80,8 +89,9 @@ public class Livro {
 
     }
 
-    public void setEmprestimo(boolean emprestimo) {
+    public void setEmprestimo(boolean emprestimo) throws Exception {
         this.emprestimo = emprestimo;
+        DAO.getLivroDAO().update(this);
     }
 
     public String isReserva() {
@@ -93,8 +103,18 @@ public class Livro {
 
     }
 
-    public void setReserva(boolean reserva) {
+    public void setReserva(boolean reserva) throws Exception {
         this.reserva = reserva;
+        DAO.getLivroDAO().update(this);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) throws Exception {
+        this.id = id;
+        DAO.getLivroDAO().update(this);
     }
 
     @Override
@@ -108,6 +128,7 @@ public class Livro {
                 ", reserva=" + reserva +
                 ", categoria='" + categoria + '\'' +
                 ", ano=" + ano +
+                ", id=" + id +
                 '}';
     }
 }
