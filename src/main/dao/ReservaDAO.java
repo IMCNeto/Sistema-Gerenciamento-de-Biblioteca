@@ -49,21 +49,6 @@ public class ReservaDAO implements ReservaCRUD {
 
 
     @Override
-    public Reserva findReserva(Usuario usuario, Livro livro) throws Exception {
-        try {
-            for(Reserva x : this.lista)
-                if(x.getLivro().equals(livro) && x.getUsuario().equals(usuario))
-                    return x;
-
-        }
-        catch (Exception e){
-            throw new Exception("Erro ao procurar Reserva");
-        }
-
-        return null;
-    }
-
-    @Override
     public Reserva update(Reserva obj) throws Exception {
         try {
             int index = this.lista.indexOf(obj);
@@ -97,6 +82,57 @@ public class ReservaDAO implements ReservaCRUD {
             throw new Exception("Erro ao Deletar lista de Reservas");
         }
 
+
+    }
+
+
+    @Override
+    public List<Reserva> findReservaActive() throws Exception {
+        try {
+            List<Reserva> reservasAtivas = new ArrayList<>();
+            for (Reserva x : this.lista) {
+                if (x.isStatus()){
+                    reservasAtivas.add(x);
+                }
+            }
+            return reservasAtivas;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao buscar lista de Reservas Ativas");
+        }
+
+    }
+
+
+    @Override
+    public Reserva findReserva(Usuario usuario, Livro livro) throws Exception {
+        try {
+            for(Reserva x : this.lista)
+                if(x.getLivro().equals(livro) && x.getUsuario().equals(usuario))
+                    return x;
+
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao procurar Reserva");
+        }
+
+        return null;
+    }
+
+    @Override
+    public Reserva firstReservaLivro(Livro livro) throws Exception {
+        try{
+            for (Reserva x : findReservaActive()){
+                if (x.getLivro().equals(livro)){
+                    return x;
+                }
+            }
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao procurar reserva pelo Livro");
+        }
+
+        throw new IllegalArgumentException("Reserva do livro não encontrada");
 
     }
 }
