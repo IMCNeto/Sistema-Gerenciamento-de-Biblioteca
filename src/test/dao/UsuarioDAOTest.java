@@ -23,7 +23,7 @@ class UsuarioDAOTest {
     }
 
     @AfterEach
-    void limpar() throws Exception {
+    void tearDown() throws Exception {
         DAO.getUsuarioDAO().deleteMany();
     }
 
@@ -33,6 +33,8 @@ class UsuarioDAOTest {
        Usuario esperado = DAO.getUsuarioDAO().readID(4);
 
        assertEquals(esperado,atual,"Esse teste deveria passar!");
+       assertNotNull(esperado,"Esse teste deveria passar!");
+
     }
 
     @Test
@@ -68,6 +70,10 @@ class UsuarioDAOTest {
     void lerID() throws Exception{
         Usuario atual = DAO.getUsuarioDAO().readID(1);
         assertEquals(Pedro,atual,"Esse teste deveria passar!");
+    }
+    @Test
+    void ususarioBloqueado(){
+
     }
 
 }
