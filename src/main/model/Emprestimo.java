@@ -19,17 +19,11 @@ public class Emprestimo {
 
 
     public Emprestimo(String datEmprestimo, Usuario usuario,Livro livro) throws Exception {
-            if (usuario.getMulta() == 0){
-                this.usuario = usuario;
-            }
-            else{
-                throw new IllegalArgumentException("Usuário não pode realizar Empréstimo");
+            if (usuario.getMulta() != 0){
+                throw new IllegalArgumentException("Usuário tem multa ativa");
             }
 
-            if(!livro.isEmprestimo()) {
-                this.livro = livro;
-            }
-            else {
+            if(livro.isEmprestimo()) {
                 throw new IllegalArgumentException("Livro não pode ser emprestado");
             }
 
@@ -37,10 +31,21 @@ public class Emprestimo {
                 throw new IllegalArgumentException("Usuário atingiu número máximo de empréstimos");
             }
 
+            if(livro.isReserva() & DAO.getReservaDAO().firstReservaLivro(livro).getUsuario().equals(usuario)){
+                livro.setReserva(false);
+            }
+            else if(livro.isReserva() & !DAO.getReservaDAO().firstReservaLivro(livro).getUsuario().equals(usuario)){
+                throw new Exception("Livro está reservado");
+
+            }
+
             DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            this.usuario = usuario;
             this.dataEmprestimo = LocalDate.parse(datEmprestimo,formatter);
             this.dataDevolver =  dataEmprestimo.plus(Period.ofDays(7));
             this.status = 0;
+            this.livro = livro;
+            this.livro.setEmprestimo(true);
     }
 
 
@@ -89,14 +94,32 @@ public class Emprestimo {
 
 
     public void renovarEmprestimo(LocalDate dataAtual) throws Exception {
-        if (!this.livro.isReserva() & dataAtual.equals(this.dataDevolver)){
-            this.dataDevolver = this.dataDevolver.plus(Period.ofDays(7));
-            DAO.getEmprestimoDAO().update(this);
+        //verifica se o usuário está tentando fazer 2 renovações consecutivas == PROIBIDO
+        if (ChronoUnit.DAYS.between(dataEmprestimo, dataAtual) >= 14){
+            throw new IllegalArgumentException("Limite de renovações atingido");
         }
-        else{
-            throw new IllegalArgumentException("Renovação não pode ser realizada");
+
+        //verifica se o livro está reservado
+        if (this.livro.isReserva()){
+            throw new IllegalArgumentException("Livro está reservado");
         }
-    }
+
+        //verifica se a data de devolução era igual à data atual, o usuário só pode renovar no dia da devolução
+        if (!dataDevolver.equals(dataAtual)){
+            System.out.println(this.dataDevolver);
+            throw new IllegalArgumentException("Empréstimo não pode ser realizado");
+        }
+
+        //verifica se o usuário não está bloqueado
+        if(DAO.getUsuarioDAO().usuariosBloqueados(DAO.getEmprestimoDAO().atrasados(dataAtual)).contains(this.usuario)){
+            throw new IllegalArgumentException("Usuário não pode realizar empréstimo");
+        }
+
+        this.dataDevolver = this.dataDevolver.plus(Period.ofDays(7));
+        DAO.getEmprestimoDAO().update(this);
+
+        }
+
 
     //método para finalizar o empréstimo
     public void finalizarEmprestimo(LocalDate dataAtual) throws Exception {
