@@ -6,12 +6,12 @@ import main.model.Livro;
 import java.util.List;
 
 public interface LivroCRUD extends CRUD<Livro, Exception>{
-    public Livro readISBN(String isbn) throws Exception;
+    public List<Livro> readByISBN(String isbn) throws Exception;
 
-    public Livro readTitulo(String titulo) throws Exception;
+    public List<Livro> readByTitulo(String titulo) throws Exception;
 
-    public Livro readAutor(String autor) throws Exception;
+    public List<Livro> readByAutor(String autor) throws Exception;
 
-    public Livro readCategoria(String categoria) throws Exception;
+    public List<Livro> readByCategoria(String categoria) throws Exception;
 
 }

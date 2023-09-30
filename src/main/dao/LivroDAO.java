@@ -32,9 +32,6 @@ public class LivroDAO implements LivroCRUD {
             objeto.setId(getProxId());
             return objeto;
 
-
-
-
     }
 
     @Override
@@ -48,78 +45,12 @@ public class LivroDAO implements LivroCRUD {
 
     }
 
-
-    @Override
-    public Livro readISBN(String isbn) throws Exception {
-        try {
-            for (Livro obj : this.lista){
-                if (obj.getISBN().equals(isbn)){
-                    return obj;
-                }
-            }
-            return null;
-        }
-        catch (Exception e){
-            throw new Exception("Erro ao procurar Livro por ISBN");
-        }
-
-    }
-
-    @Override
-    public Livro readTitulo(String titulo) throws Exception {
-        try {
-            for (Livro obj : this.lista){
-                if (obj.getTitulo().equals(titulo)){
-                    return obj;
-                }
-            }
-            return null;
-        }
-        catch (Exception e){
-            throw new Exception("Erro ao procurar Livro por título");
-        }
-
-    }
-
-    @Override
-    public Livro readAutor(String autor) throws Exception {
-        try {
-            for (Livro obj : this.lista){
-                if (obj.getAutor().equals(autor)){
-                    return obj;
-                }
-            }
-            return null;
-        }
-        catch (Exception e){
-            throw new Exception("Erro ao procurar Livro por autor");
-        }
-
-    }
-
-    @Override
-    public Livro readCategoria(String categoria) throws Exception {
-        try {
-            for (Livro obj : this.lista){
-                if (obj.getCategoria().equals(categoria)){
-                    return obj;
-                }
-            }
-            return null;
-        }
-        catch (Exception e){
-            throw new Exception("Erro ao procurar Livro por Categoria");
-        }
-
-    }
-
-
     @Override
     public Livro update(Livro obj) throws Exception{
 
-            int index = this.lista.indexOf(obj);
-            this.lista.set(index, obj);
-            return obj;
+        int index = this.lista.indexOf(obj);
+        this.lista.set(index, obj);
+        return obj;
 
 
 
@@ -146,5 +77,87 @@ public class LivroDAO implements LivroCRUD {
         }
 
     }
+
+
+    @Override
+    public List<Livro> readByISBN(String isbn) throws Exception {
+        try {
+            List<Livro> livrosISBN = new ArrayList<>();
+            for (Livro obj : this.lista){
+                if (obj.getISBN().equals(isbn)){
+                    livrosISBN.add(obj);
+                }
+            }
+            if (!livrosISBN.isEmpty()){
+                return livrosISBN;
+            }
+
+        }
+        catch (Exception e) {
+            throw new Exception("Erro ao procurar Livro por ISBN");
+        }
+    throw new IllegalArgumentException("Não existem livros com esse ISBN");
+    }
+
+
+    @Override
+    public List<Livro> readByTitulo(String titulo) throws Exception {
+        try {
+            List<Livro> livrosTitulo = new ArrayList<>();
+            for (Livro obj : this.lista){
+                if (obj.getTitulo().equals(titulo)){
+                    livrosTitulo.add(obj);
+                }
+            }
+            if (!livrosTitulo.isEmpty()){
+                return livrosTitulo;
+            }
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao procurar Livro por título");
+        }
+        throw new IllegalArgumentException("Não existem livros com esse título");
+    }
+
+    @Override
+    public List<Livro> readByAutor(String autor) throws Exception {
+        try {
+            List<Livro> livrosAutor = new ArrayList<>();
+            for (Livro obj : this.lista){
+                if (obj.getAutor().equals(autor)){
+                    livrosAutor.add(obj);
+                }
+            }
+            if(!livrosAutor.isEmpty()){
+                return livrosAutor;
+            }
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao procurar Livro por autor");
+        }
+        throw new IllegalArgumentException("Não existem livros desse Autor");
+    }
+
+    @Override
+    public List<Livro> readByCategoria(String categoria) throws Exception {
+        try {
+            List<Livro> livrosCategoria = new ArrayList<>();
+            for (Livro obj : this.lista){
+                if (obj.getCategoria().equals(categoria)){
+                    livrosCategoria.add(obj);
+                }
+            }
+            if(!livrosCategoria.isEmpty()){
+                return livrosCategoria;
+            }
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao procurar Livro por Categoria");
+        }
+        throw new IllegalArgumentException("Não existem livros dessa categoria");
+    }
+
+
+
 
 }

@@ -24,8 +24,8 @@ public class BibliotecarioDAO implements BibliotecarioCRUD {
     @Override
     public Bibliotecario create(Bibliotecario obj) throws Exception {
         try {
-            obj.setId(this.getProx_id());
             this.lista.add(obj);
+            obj.setId(this.getProx_id());
             return obj;
         }
         catch (Exception e){
@@ -74,7 +74,6 @@ public class BibliotecarioDAO implements BibliotecarioCRUD {
 
     @Override
     public void delete(Bibliotecario obj) throws Exception{
-
         try {
             this.lista.remove(obj);
         }
