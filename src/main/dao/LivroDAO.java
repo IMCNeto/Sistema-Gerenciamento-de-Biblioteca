@@ -2,12 +2,16 @@ package main.dao;
 
 
 import main.Interfaces.LivroCRUD;
+import main.model.Emprestimo;
 import main.model.Livro;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Stream;
 
 public class LivroDAO implements LivroCRUD {
 
@@ -158,6 +162,21 @@ public class LivroDAO implements LivroCRUD {
     }
 
 
-
-
+    @Override
+    public HashMap<String, Integer> readMoreUsed() throws Exception {
+        HashMap<String, Integer> map = new HashMap<String,Integer>();
+        for (Emprestimo x : DAO.getEmprestimoDAO().read()){
+            if (!map.containsKey(x.getLivro().getISBN())){
+                map.put(x.getLivro().getISBN(),-1);
+            }
+            else {
+                Integer i = map.get(x.getLivro().getISBN());
+                map.put(x.getLivro().getISBN(), --i );
+            }
+        }
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+        System.out.println(list);
+        return map;
+    }
 }
