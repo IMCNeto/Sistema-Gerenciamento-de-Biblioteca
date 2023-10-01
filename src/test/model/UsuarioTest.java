@@ -29,5 +29,6 @@ public class UsuarioTest {
     void Multa() throws Exception{
         multa = usuario.calcularMulta(dataDevolver,dataAtual);
         assertEquals(4,multa,"Esse teste deveria passar!");
+
     }
 }
