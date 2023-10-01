@@ -26,22 +26,7 @@ public class EmprestimoDAO implements EmprestimoCRUD {
     }
 
 
-    @Override
-    public List<Emprestimo> atrasados(LocalDate dataAtual) throws Exception {
-        try {
-            List<Emprestimo> listaEmprestimosAtrasados = new ArrayList<Emprestimo>();
-            for(Emprestimo x : this.lista){
-                if(x.getUsuario().calcularMulta(x.getDataDevolver(),dataAtual) > 0){
-                    listaEmprestimosAtrasados.add(x);
-                }
-            }
-            return listaEmprestimosAtrasados;
-        }
-        catch (Exception e){
-            throw new Exception("Erro ao buscar lista de empréstimos atrasados");
-        }
 
-    }
 
     @Override
     public Emprestimo create(Emprestimo objeto) throws Exception {
@@ -82,6 +67,29 @@ public class EmprestimoDAO implements EmprestimoCRUD {
         }
         catch (Exception e){
             throw new Exception("Erro ao buscar lista de empréstimos");
+        }
+
+    }
+
+    @Override
+    public void delete(Emprestimo obj) throws Exception{
+
+        try {
+            this.lista.remove(obj);
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao Deletar um Empréstimo");
+        }
+    }
+
+    @Override
+    public void deleteMany() throws Exception {
+        try {
+            this.lista.clear();
+            this.proxId = 0;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao deletar lista de empréstimos");
         }
 
     }
@@ -142,27 +150,38 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     }
 
-    @Override
-    public void delete(Emprestimo obj) throws Exception{
 
-        try {
-            this.lista.remove(obj);
-        }
-        catch (Exception e){
-            throw new Exception("Erro ao Deletar um Empréstimo");
-        }
-    }
 
     @Override
-    public void deleteMany() throws Exception {
+    public List<Emprestimo> atrasados(LocalDate dataAtual) throws Exception {
         try {
-            this.lista.clear();
-            this.proxId = 0;
+            List<Emprestimo> listaEmprestimosAtrasados = new ArrayList<Emprestimo>();
+            for(Emprestimo x : this.lista){
+                if(x.getUsuario().calcularMulta(x.getDataDevolver(),dataAtual) > 0){
+                    listaEmprestimosAtrasados.add(x);
+                }
+            }
+            return listaEmprestimosAtrasados;
         }
         catch (Exception e){
-            throw new Exception("Erro ao deletar lista de empréstimos");
+            throw new Exception("Erro ao buscar lista de empréstimos atrasados");
         }
 
     }
 
+    @Override
+    public List<Emprestimo> findEmpActive() throws Exception {
+        try {
+            List<Emprestimo> listaEmprestimosAtivos = new ArrayList<Emprestimo>();
+            for (Emprestimo x : this.lista){
+                if(x.getStatus() == 0){
+                    listaEmprestimosAtivos.add(x);
+                }
+            }
+            return listaEmprestimosAtivos;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao buscar lista de empréstimos ativos");
+        }
+    }
 }
