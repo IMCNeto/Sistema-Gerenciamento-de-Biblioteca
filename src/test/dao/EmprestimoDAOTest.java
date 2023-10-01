@@ -1,6 +1,7 @@
 package test.dao;
 
 import main.dao.DAO;
+import main.dao.EmprestimoDAO;
 import main.model.Emprestimo;
 import main.model.Livro;
 import main.model.Reserva;
@@ -23,6 +24,7 @@ public class EmprestimoDAOTest {
     Usuario Sara;
     Livro Livro1;
     Livro Livro2;
+    Livro Livro3;
     ArrayList<Emprestimo> lista;
 
     @BeforeEach
@@ -32,6 +34,7 @@ public class EmprestimoDAOTest {
         Pedro = DAO.getUsuarioDAO().create(new Usuario("Pedro","75982830091","R. B,14,Feira VI"));
         Livro1 = DAO.getLivroDAO().create(new Livro("O cortiço","Aluísio","A","AAR20","Romance",2000));
         Livro2 = DAO.getLivroDAO().create(new Livro("O beijo","Joaozinho","B","BJR20","Romance",2000));
+        Livro3 = DAO.getLivroDAO().create(new Livro("Enrolados", "Abreu", "D", "DAR20", "Romance", 2000));
         emprestimo1 = DAO.getEmprestimoDAO().create(new Emprestimo("12/09/2023",Tiago,Livro1));
         emprestimo2 = DAO.getEmprestimoDAO().create(new Emprestimo("16/09/2023",Pedro,Livro2));
 
@@ -40,11 +43,13 @@ public class EmprestimoDAOTest {
     @AfterEach
     void tearDown() throws Exception {
         DAO.getEmprestimoDAO().deleteMany();
+        DAO.getLivroDAO().deleteMany();
+        DAO.getUsuarioDAO().deleteMany();
     }
 
     @Test
     void criar() throws Exception {
-        Emprestimo atual = DAO.getEmprestimoDAO().create(new Emprestimo("19/09/2023",Sara,Livro1));
+        Emprestimo atual = DAO.getEmprestimoDAO().create(new Emprestimo("19/09/2023",Sara,Livro3));
         Emprestimo esperado = DAO.getEmprestimoDAO().findbyID(2);
 
         assertEquals(esperado,atual,"Esse teste deveria passar!");

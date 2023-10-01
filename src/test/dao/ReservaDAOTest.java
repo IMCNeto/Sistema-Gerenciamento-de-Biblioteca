@@ -34,6 +34,8 @@ public class ReservaDAOTest {
     @AfterEach
     void tearDown() throws Exception {
         DAO.getReservaDAO().deleteMany();
+        DAO.getUsuarioDAO().deleteMany();
+        DAO.getLivroDAO().deleteMany();
     }
 
     @Test

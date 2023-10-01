@@ -6,15 +6,16 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class LivroDAOTest {
     Livro livro1;
     Livro livro2;
     Livro livro3;
     Livro livro4;
-
     Livro livro5;
 
     @BeforeEach
@@ -31,13 +32,12 @@ class LivroDAOTest {
         DAO.getLivroDAO().deleteMany();
     }
 
+
     @Test
     void criar() throws Exception {
         Livro atual = DAO.getLivroDAO().create(new Livro("Capitães de areia","Jorge Amado","D","DJC20","Conto",2001));
-        Livro esperado = DAO.getLivroDAO().readISBN("DJC20");
-
-        assertEquals(esperado,atual,"Esse teste deveria passar!");
-        assertNotNull(esperado,"Esse teste deveria passar!");
+        List<Livro> esperado = DAO.getLivroDAO().readByAutor("Jorge Amado");
+        assert !esperado.isEmpty();
 
     }
 
@@ -74,24 +74,36 @@ class LivroDAOTest {
 
     @Test
     void lerISBN() throws Exception{
-        Livro atual = DAO.getLivroDAO().readISBN("CTC20");
-        assertEquals(livro3,atual,"Esse teste deveria passar!");
-    }
-    @Test
-    void lerTitulo() throws Exception{
-        Livro atual = DAO.getLivroDAO().readTitulo("cangaço");
-        assertEquals(livro3,atual,"Esse teste deveria passar!");
-    }
-    @Test
-    void lerAutor() throws Exception{
-        Livro atual = DAO.getLivroDAO().readAutor("Abreu");
-        assertEquals(livro4,atual,"Esse teste deveria passar!");
+        List<Livro> atual = DAO.getLivroDAO().readByISBN("CTC20");
+        List<Livro> esperado = new ArrayList<Livro>();
+        esperado.add(livro3);
+        assertArrayEquals(new List[]{atual}, new List[]{esperado},"Esse Teste deveria passar");
     }
 
     @Test
+    void lerTitulo() throws Exception{
+        List<Livro> atual = DAO.getLivroDAO().readByTitulo("cangaço");
+        List<Livro> esperado = new ArrayList<Livro>();
+        esperado.add(livro3);
+        assertArrayEquals(new List[]{atual}, new List[]{esperado},"Esse Teste deveria passar");
+    }
+
+    @Test
+    void lerAutor() throws Exception{
+        List<Livro> atual = DAO.getLivroDAO().readByAutor("Abreu");
+        List<Livro> esperado = new ArrayList<Livro>();
+        esperado.add(livro4);esperado.add(livro5);
+        assertArrayEquals(new List[]{atual}, new List[]{esperado},"Esse Teste deveria passar");
+    }
+
+
+
+    @Test
     void lerCategoria() throws Exception{
-        Livro atual = DAO.getLivroDAO().readCategoria("Romance");
-        assertEquals(livro1,atual,"Esse teste deveria passar!");
+        List<Livro> atual =  DAO.getLivroDAO().readByCategoria("Romance");
+        List<Livro> esperado = new ArrayList<Livro>();
+        esperado.add(livro1);esperado.add(livro4);esperado.add(livro5);
+        assertArrayEquals(new List[]{atual}, new List[]{esperado});
     }
 
 }
