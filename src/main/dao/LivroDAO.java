@@ -176,7 +176,7 @@ public class LivroDAO implements LivroCRUD {
         }
         List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
         list.sort(Map.Entry.comparingByValue());
-        System.out.println(list);
+
         return map;
     }
 }

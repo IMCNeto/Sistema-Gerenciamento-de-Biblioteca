@@ -106,7 +106,6 @@ public class Emprestimo {
 
         //verifica se a data de devolução era igual à data atual, o usuário só pode renovar no dia da devolução
         if (!dataDevolver.equals(dataAtual)){
-            System.out.println(this.dataDevolver);
             throw new IllegalArgumentException("Empréstimo não pode ser realizado");
         }
 
