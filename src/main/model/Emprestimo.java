@@ -31,10 +31,10 @@ public class Emprestimo {
                 throw new IllegalArgumentException("Usuário atingiu número máximo de empréstimos");
             }
 
-            if(livro.isReserva() & DAO.getReservaDAO().firstReservaLivro(livro).getUsuario().equals(usuario)){
+            if(livro.isReserva() && !DAO.getReservaDAO().findReservaActive().isEmpty() && DAO.getReservaDAO().firstReservaLivro(livro).getUsuario().equals(usuario)){
                 livro.setReserva(false);
             }
-            else if(livro.isReserva() & !DAO.getReservaDAO().firstReservaLivro(livro).getUsuario().equals(usuario)){
+            else if(livro.isReserva() && !DAO.getReservaDAO().firstReservaLivro(livro).getUsuario().equals(usuario)){
                 throw new Exception("Livro está reservado");
 
             }
@@ -95,7 +95,7 @@ public class Emprestimo {
 
     public void renovarEmprestimo(LocalDate dataAtual) throws Exception {
         //verifica se o usuário está tentando fazer 2 renovações consecutivas == PROIBIDO
-        if (ChronoUnit.DAYS.between(dataEmprestimo, dataAtual) >= 14){
+        if (ChronoUnit.DAYS.between(this.dataEmprestimo, dataAtual) >= 14){
             throw new IllegalArgumentException("Limite de renovações atingido");
         }
 
