@@ -16,4 +16,6 @@ public interface EmprestimoCRUD extends CRUD<Emprestimo, Exception>{
 
     public List<Emprestimo> findbyUserActive(Usuario usuario) throws Exception;
 
+    public List<Emprestimo> findEmpActive() throws Exception;
+
 }

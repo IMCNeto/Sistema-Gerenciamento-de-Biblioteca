@@ -6,6 +6,7 @@ import main.model.Emprestimo;
 import main.model.Livro;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -178,5 +179,20 @@ public class LivroDAO implements LivroCRUD {
         list.sort(Map.Entry.comparingByValue());
 
         return map;
+    }
+
+    @Override
+    public int numBorrowed(LocalDate dataAtual) throws Exception {
+        return DAO.getEmprestimoDAO().atrasados(dataAtual).size();
+    }
+
+    @Override
+    public int numEmp() throws Exception {
+        return DAO.getEmprestimoDAO().findEmpActive().size();
+    }
+
+    @Override
+    public int numReserved() throws Exception {
+        return DAO.getReservaDAO().findReservaActive().size();
     }
 }
