@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class LivroDAOTest {
+public class LivroDAOTest {
     Livro livro1;
     Livro livro2;
     Livro livro3;
