@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LivroDAOTest {
+public class LivroDAOTest {
     Livro livro1;
     Livro livro2;
     Livro livro3;

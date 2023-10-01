@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UsuarioDAOTest {
+public class UsuarioDAOTest {
     Usuario Tiago;
     Usuario Pedro;
     Usuario Maria;
