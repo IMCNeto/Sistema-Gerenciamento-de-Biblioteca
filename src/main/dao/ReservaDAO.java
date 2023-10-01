@@ -77,6 +77,7 @@ public class ReservaDAO implements ReservaCRUD {
     public void deleteMany() throws Exception {
         try {
             this.lista.clear();
+            this.proximoID = 0;
         }
         catch (Exception e){
             throw new Exception("Erro ao Deletar lista de Reservas");
