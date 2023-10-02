@@ -70,7 +70,7 @@ public class Emprestimo {
             }
 
         /*
-        Verificando se o usuário está
+        Verificando se o usuário já atingiu o limite de empréstimos
          */
         if (DAO.getEmprestimoDAO().findbyUserActive(usuario).size() >= 3){
             throw new IllegalArgumentException("Usuário atingiu número máximo de empréstimos");
