@@ -2,6 +2,12 @@ package main.Interfaces;
 
 import java.util.List;
 
+
+/**
+ * Interface que implementa o padrão CRUD (Create, Read, Update, Delete)
+ *
+ * @version 1.0
+ */
 public interface CRUD<T, E extends Exception> {
 
     public T create(T obj) throws Exception;
