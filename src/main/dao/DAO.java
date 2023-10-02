@@ -1,6 +1,13 @@
 package main.dao;
 
 
+/**
+ * Classe responsável por implementar o Padrão Singleton tem como definição garantir que uma classe,
+ * tenha apenas uma instância de si mesma e que forneça um ponto global de acesso a ela;
+ *
+ * @version 1.0;
+ */
+
 public class DAO {
     private static AdministradorDAO administradorDAOinstance;
     private static BibliotecarioDAO bibliotecarioDAOinstance;

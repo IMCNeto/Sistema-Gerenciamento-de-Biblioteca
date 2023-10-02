@@ -9,25 +9,51 @@ import main.model.Usuario;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+
+/**
+ * Classe que implementa o DAO(Decentralized Autonomous Organization) do model Empréstimo,
+ * responsável por realizar a troca de informações entre dados e objetos;
+ * Implementa os métodos da Interface EmpréstimoCRUD;
+ *
+ * @author Ilson Marinho e Jhessé Campos
+ * @version 1.0
+ */
 public class EmprestimoDAO implements EmprestimoCRUD {
 
+    /**
+     * ArrayList que guarda todos os empréstimos, representa a implementação do DAO;
+     */
     private ArrayList<Emprestimo> lista;
 
+    /**
+     * ID - Atributo identificador único
+     */
     private int proxId;
 
+    /**
+     * Construtor que inicializa a classe
+     */
     public EmprestimoDAO(){
         this.lista = new ArrayList<>();
         this.proxId = 0;
 
     }
 
+    /**
+     * Método que retorna um novo ID que ainda não foi utilizado;
+     * @return INT - prox_id e incrementa 1 em prox_id;
+     */
     private int getProxId(){
         return this.proxId++;
     }
 
-
-
-
+    /**
+     * Método que cria o objeto na lista de dados (Necessário para persistência de dados);
+     *
+     * @param objeto Objeto do tipo Empréstimo;
+     * @return Objeto do tipo Empréstimo;
+     */
     @Override
     public Emprestimo create(Emprestimo objeto) throws Exception {
         try {
@@ -45,6 +71,13 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     }
 
+    /**
+     * Método que atualiza os dados do Empréstimo no arraylist
+     *
+     * @param obj Objeto do tipo Empréstimo;
+     * @return Objeto do tipo Empréstimo;
+     *
+     */
     @Override
     public Emprestimo update(Emprestimo obj) throws Exception{
         try {
@@ -58,8 +91,11 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     }
 
-
-
+    /**
+     * Método que retorna a lista completa de Empréstimos;
+     *
+     * @return Lista de Empréstimos;
+     */
     @Override
     public List<Emprestimo> read() throws Exception {
         try {
@@ -71,6 +107,11 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     }
 
+    /**
+     * Método que deleta um Empréstimo da ArrayList;
+     *
+     * @param obj Empréstimo;
+     */
     @Override
     public void delete(Emprestimo obj) throws Exception{
 
@@ -82,6 +123,10 @@ public class EmprestimoDAO implements EmprestimoCRUD {
         }
     }
 
+    /**
+     * Método que deleta todos os dados da ArrayList;
+     *
+     */
     @Override
     public void deleteMany() throws Exception {
         try {
@@ -94,7 +139,12 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     }
 
-
+    /**
+     * Método que busca um empréstimo por um ID;
+     *
+     * @param index ID - Atributo identificador único;
+     * @return Empréstimo;
+     */
     @Override
     public Emprestimo findbyID(int index) throws Exception {
         try {
@@ -111,8 +161,13 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     }
 
-
-    //Retorna lista com todos os empréstimos de um usuário
+    /**
+     * Método que retorna lista com todos os empréstimos de um usuário;
+     *
+     * @param usuario Objeto do tipo usuário;
+     * @return Lista de empréstimos;
+     *
+     */
     @Override
     public List<Emprestimo> findbyUser(Usuario usuario) throws Exception {
         try {
@@ -130,8 +185,12 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     }
 
-
-    //Retorna lista com os empréstimos ativos de um usuário
+    /**
+     * Método que busca lista com todos os empréstimos ativos de um usuário;
+     * @param usuario Objeto do tipo Usuário;
+     * @return Lista de empréstimos;
+     *
+     */
     @Override
     public List<Emprestimo> findbyUserActive(Usuario usuario) throws Exception{
         try {
@@ -150,8 +209,13 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     }
 
-
-
+    /**
+     * Método que busca todos os empréstimos atrasados no determinado momento;
+     *
+     * @param dataAtual Data do momento atual
+     * @return Lista de empréstimos atrasados
+     *
+     */
     @Override
     public List<Emprestimo> atrasados(LocalDate dataAtual) throws Exception {
         try {
@@ -169,6 +233,12 @@ public class EmprestimoDAO implements EmprestimoCRUD {
 
     }
 
+    /**
+     * Método que busca todos os empréstimos ativos;
+     *
+     * @return Lista de empréstimos ativos
+     *
+     */
     @Override
     public List<Emprestimo> findEmpActive() throws Exception {
         try {

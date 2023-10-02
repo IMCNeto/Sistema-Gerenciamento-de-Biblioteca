@@ -8,20 +8,49 @@ import main.model.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Classe que implementa o DAO(Decentralized Autonomous Organization) do model Reserva,
+ * responsável por realizar a troca de informações entre dados e objetos;
+ * Implementa os métodos da Interface ReservaCRUD;
+ *
+ * @author Ilson Marinho e Jhessé Campos
+ * @version 1.0
+ */
 public class ReservaDAO implements ReservaCRUD {
+
+    /**
+     * ArrayList que guarda todos as reservas, representa a implementação do DAO;
+     */
     private ArrayList<Reserva> lista;
 
+    /**
+     * ID - Atributo identificador único
+     */
     private int proximoID;
 
+    /**
+     * Construtor que inicializa a classe
+     */
     public ReservaDAO() {
         this.lista = new ArrayList<>();
         this.proximoID = 0;
     }
 
-
+    /**
+     * Método que retorna um novo ID que ainda não foi utilizado;
+     * @return INT - prox_id e incrementa 1 em prox_id;
+     */
     private int getProximoID() {
         return this.proximoID++;
     }
+
+    /**
+     * Método que cria o objeto na lista de dados (Necessário para persistência de dados);
+     *
+     * @param obj Objeto do tipo Reserva;
+     * @return Objeto do tipo Reserva;
+     */
     @Override
     public Reserva create(Reserva obj) throws Exception {
         try {
@@ -36,6 +65,11 @@ public class ReservaDAO implements ReservaCRUD {
 
     }
 
+    /**
+     * Método que retorna a lista completa de Reservas;
+     *
+     * @return Lista de Reservas;
+     */
     @Override
     public List<Reserva> read() throws Exception {
         try {
@@ -47,7 +81,13 @@ public class ReservaDAO implements ReservaCRUD {
 
     }
 
-
+    /**
+     * Método que atualiza os dados da Reserva no arraylist
+     *
+     * @param obj Objeto do tipo Reserva;
+     * @return Objeto do tipo Reserva;
+     *
+     */
     @Override
     public Reserva update(Reserva obj) throws Exception {
         try {
@@ -62,6 +102,11 @@ public class ReservaDAO implements ReservaCRUD {
 
     }
 
+    /**
+     * Método que deleta uma Reserva da ArrayList;
+     *
+     * @param obj Reserva;
+     */
     @Override
     public void delete(Reserva obj) throws Exception {
         try {
@@ -73,6 +118,10 @@ public class ReservaDAO implements ReservaCRUD {
 
     }
 
+    /**
+     * Método que deleta todos os dados da ArrayList;
+     *
+     */
     @Override
     public void deleteMany() throws Exception {
         try {
@@ -86,7 +135,11 @@ public class ReservaDAO implements ReservaCRUD {
 
     }
 
-
+    /**
+     * Método que busca lista de Reservas ativas;
+     * @return Lista de reservas ativas;
+     *
+     * */
     @Override
     public List<Reserva> findReservaActive() throws Exception {
         try {
@@ -104,7 +157,13 @@ public class ReservaDAO implements ReservaCRUD {
 
     }
 
-
+    /**
+     * Método que busca reserva por um usuário e livro;
+     * @param usuario Objeto do tipo Usuário;
+     * @param livro Objeto do tipo Livro;
+     * @return Objeto do tipo Reserva;
+     *
+     */
     @Override
     public Reserva findReserva(Usuario usuario, Livro livro) throws Exception {
         try {
@@ -120,6 +179,11 @@ public class ReservaDAO implements ReservaCRUD {
         return null;
     }
 
+    /**
+     * Método que busca a primeira reserva de um determinado livro;
+     * @param livro Objeto do tipo Livro;
+     * @return Objeto do tipo Reserva;
+     */
     @Override
     public Reserva firstReservaLivro(Livro livro) throws Exception {
         try{
