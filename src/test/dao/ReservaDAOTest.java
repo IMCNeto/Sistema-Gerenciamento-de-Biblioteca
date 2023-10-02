@@ -1,6 +1,7 @@
 package test.dao;
 
 import main.dao.DAO;
+import main.model.Emprestimo;
 import main.model.Livro;
 import main.model.Reserva;
 import main.model.Usuario;
@@ -26,6 +27,8 @@ public class ReservaDAOTest {
         Pedro = DAO.getUsuarioDAO().create(new Usuario("Pedro","75982830091","R. B,14,Feira VI"));
         Livro1 = DAO.getLivroDAO().create(new Livro("O cortiço","Aluísio","A","AAR20","Romance",2000));
         Livro2 = DAO.getLivroDAO().create(new Livro("O beijo","Joaozinho","B","BJR20","Romance",2000));
+        Emprestimo emprestimo1 = DAO.getEmprestimoDAO().create(new Emprestimo("20/09/2023",Tiago,Livro1));
+        Emprestimo emprestimo2 = DAO.getEmprestimoDAO().create(new Emprestimo("20/09/2023",Pedro,Livro2));
         reserva1 = DAO.getReservaDAO().create(new Reserva(Tiago,Livro1));
         reserva2 = DAO.getReservaDAO().create(new Reserva(Pedro,Livro2));
 
@@ -36,6 +39,7 @@ public class ReservaDAOTest {
         DAO.getReservaDAO().deleteMany();
         DAO.getUsuarioDAO().deleteMany();
         DAO.getLivroDAO().deleteMany();
+        DAO.getEmprestimoDAO().deleteMany();
     }
 
     @Test

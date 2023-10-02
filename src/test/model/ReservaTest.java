@@ -21,7 +21,6 @@ public class ReservaTest {
     Emprestimo emprestimo3;
     Usuario Tiago;
     Usuario Sara;
-    Usuario Pedro;
     Livro Livro1;
     Livro Livro2;
     Livro Livro3;
@@ -41,7 +40,10 @@ public class ReservaTest {
     @Test
     void finalizarReserva() throws Exception {
         Usuario usuario = DAO.getUsuarioDAO().create(new Usuario("Carlos","75988351212","Feira VI,Rua B")) ;
-        Livro livro =DAO.getLivroDAO().create(new Livro("O cortiço","Aluísio","A","AAR20","Romance",2002));
+        Usuario Pedro = DAO.getUsuarioDAO().create(new Usuario("Pedro","75982830091","R. B,14,Feira VI"));
+        Livro livro = DAO.getLivroDAO().create(new Livro("O cortiço","Aluísio","A","AAR20","Romance",2002));
+        
+        Emprestimo emprestimoNovo = DAO.getEmprestimoDAO().create(new Emprestimo("20/09/2023", Pedro, livro));
         Reserva reserva = DAO.getReservaDAO().create(new Reserva(usuario,livro));
 
         assertTrue(reserva.isStatus());
