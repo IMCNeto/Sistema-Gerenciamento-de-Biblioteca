@@ -41,6 +41,13 @@ public class Reserva {
      *
      */
     public Reserva(Usuario usuario, Livro livro) throws Exception {
+        if(!livro.isEmprestimo()){
+        throw new IllegalArgumentException("Livro não está emprestado");
+        }
+
+        if (usuario.getMulta() != 0){
+            throw new IllegalArgumentException("Usuário tem multa ativa");
+        }
         this.usuario = usuario;
         this.livro = livro;
         livro.setReserva(true);
