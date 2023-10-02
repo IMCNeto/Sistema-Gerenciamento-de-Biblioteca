@@ -5,12 +5,41 @@ import main.dao.LivroDAO;
 
 import java.util.ArrayList;
 
+
+/** Classe para objetos do tipo reserva, onde serão contidos os valores e métodos para o mesmo;
+ * @author Ilson Marinho e Jhessé Campos;
+ * @version 1.0;
+ */
+
 public class Reserva {
+
+    /**
+     * Objeto do tipo Usuário que está realizando a reserva;
+     */
     private Usuario usuario;
+
+    /**
+     * Objeto do tipo Livro que está sendo emprestado;
+     */
     private Livro livro;
-    private boolean status; // True = Aberto; False = Concluído
+
+    /**
+     * Condição referente ao estado atual da reserva (True = Em andamento; False = Concluído);
+     */
+    private boolean status;
+
+    /**
+     * ID - Atributo identificador único;
+     */
     private int id;
 
+
+    /**
+     *
+     * @param usuario usuário que está realizando a reserva;
+     * @param livro livro que está sendo reservado;
+     *
+     */
     public Reserva(Usuario usuario, Livro livro) throws Exception {
         this.usuario = usuario;
         this.livro = livro;
@@ -45,11 +74,6 @@ public class Reserva {
         DAO.getReservaDAO().update(this);
     }
 
-    public void finalizarReserva() throws Exception {
-        this.status = false;
-        this.livro.setReserva(false);
-        DAO.getReservaDAO().update(this);
-    }
 
     public int getId() {
         return id;
@@ -68,5 +92,14 @@ public class Reserva {
                 ", status=" + status +
                 ", id=" + id +
                 '}';
+    }
+
+    /**
+     * Método responsável por finalizar reserva, alterando os atributos referente a condição atual da reserva;
+     */
+    public void finalizarReserva() throws Exception {
+        this.status = false;
+        this.livro.setReserva(false);
+        DAO.getReservaDAO().update(this);
     }
 }

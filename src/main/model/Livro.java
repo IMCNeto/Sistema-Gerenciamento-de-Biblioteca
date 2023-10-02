@@ -2,19 +2,69 @@ package main.model;
 
 import main.dao.DAO;
 
+
+/** Classe para objetos do tipo livro, onde serão contidos os valores e métodos para o mesmo;
+ * @author Ilson Marinho e Jhessé Campos;
+ * @version 1.0;
+ */
+
 public class Livro {
 
+    /**
+     * Nome do título do objeto livro;
+     */
     private String titulo;
+
+    /**
+     * Nome do autor do livro;
+     */
     private String autor;
+
+    /**
+     * Nome da editora do livro;
+     */
     private String editora;
+
+    /**
+     * Atributo referente ao ISBN(International Standard Book Number);
+     */
     private String ISBN;
+
+    /**
+     * Condição referente ao estado atual do empréstimo do livro;
+     */
     private boolean emprestimo;// true = emprestado; false = livre
+
+    /**
+     * Condição referente ao estado atual da reserva do livro;
+     */
     private boolean reserva; // true = reservado; false = livre
+
+    /**
+     * String referente a categoria do livro;
+     */
     private String categoria;
+
+    /**
+     * Ano de publicação;
+     */
     private int ano;
+
+    /**
+     * ID - Atributo identificador único;
+     */
     private int id;
 
 
+    /**
+     *
+     * @param titulo título do livro;
+     * @param autor autor do livro;
+     * @param editora editora do livro;
+     * @param ISBN  ISBN do livro;
+     * @param categoria categoria do livro;
+     * @param ano   ano de publicação;
+     */
     public Livro(String titulo, String autor, String editora, String ISBN, String categoria, int ano) {
         this.titulo = titulo;
         this.autor = autor;
