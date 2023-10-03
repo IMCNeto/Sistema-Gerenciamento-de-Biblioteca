@@ -8,6 +8,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+ * Classe responsável por realizar os testes dos métodos da classe UsuarioDAO
+ * @author Ilson Marinho e Jhessé Campos
+ * @version 1.0
+ */
 public class UsuarioDAOTest {
     Usuario Tiago;
     Usuario Pedro;
@@ -32,6 +38,9 @@ public class UsuarioDAOTest {
        Usuario atual = DAO.getUsuarioDAO().create(new Usuario("Rute","75982830094","R. E,8,Feira VI"));
        Usuario esperado = DAO.getUsuarioDAO().readID(4);
 
+       /*
+        Verificando se a lista esperada não está vazia e se é igual ao esperado, após criar um objeto no DAO
+         */
        assertEquals(esperado,atual,"Esse teste deveria passar!");
        assertNotNull(esperado,"Esse teste deveria passar!");
 
@@ -41,6 +50,10 @@ public class UsuarioDAOTest {
     void deletarObj() throws Exception {
         DAO.getUsuarioDAO().delete(Sara);
         int atual = DAO.getUsuarioDAO().read().size();
+
+        /*
+        Excluindo um objeto da lista e verificando se o tamanho atual é igual ao esperado;
+         */
         assertEquals(3,atual,"Esse teste deveria passar!");
     }
 
@@ -48,6 +61,10 @@ public class UsuarioDAOTest {
     void deletarTudo() throws Exception{
         DAO.getUsuarioDAO().deleteMany();
         int atual = DAO.getUsuarioDAO().read().size();
+
+        /*
+        Como chamamos a função deleteMany, o tamanho da lista deve ser 0;
+         */
         assertEquals(0,atual,"Esse teste deveria passar!");
 
     }
@@ -57,12 +74,20 @@ public class UsuarioDAOTest {
         Tiago.setNome("Thiago");
         Tiago.setTelefone("75982830099");
         Usuario atual = DAO.getUsuarioDAO().update(Tiago);
+
+        /*
+        Conferindo se o objeto está sendo atualizado no DAO
+         */
         assertEquals(Tiago,atual,"Esse teste deveria passar!");
     }
 
     @Test
     void lerTodaLista() throws Exception {
         int atual = DAO.getUsuarioDAO().read().size();
+
+        /*
+        Como adicionamos apenas 4 usuários para realizar os testes, o tamanho da lista total deve ser 4;
+         */
         assertEquals(4,atual,"Esse teste deveria passar!");
     }
 
@@ -71,10 +96,7 @@ public class UsuarioDAOTest {
         Usuario atual = DAO.getUsuarioDAO().readID(1);
         assertEquals(Pedro,atual,"Esse teste deveria passar!");
     }
-    @Test
-    void ususarioBloqueado(){
 
-    }
 
 }
 

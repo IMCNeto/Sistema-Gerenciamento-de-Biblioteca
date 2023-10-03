@@ -12,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Classe responsável por realizar os testes dos métodos da classe Empréstimo
+ * @author Ilson Marinho e Jhessé Campos
+ * @version 1.0
+ */
 public class EmprestimoTest {
     Emprestimo emprestimo1;
     Emprestimo emprestimo2;
@@ -36,7 +41,9 @@ public class EmprestimoTest {
         emprestimo2 = DAO.getEmprestimoDAO().create(new Emprestimo("16/09/2023",Sara,Livro2));
         emprestimo3 = DAO.getEmprestimoDAO().create(new Emprestimo("20/09/2023",Pedro,Livro3));
 
-        //finalizando empréstimo 2 para testes
+        /*
+        finalizando empréstimo 2 para testes
+         */
         DAO.getEmprestimoDAO().findbyID(1).finalizarEmprestimo(LocalDate.of(2023,9,26));
 
     }
@@ -60,10 +67,16 @@ public class EmprestimoTest {
         assertEquals(userEsperado ,jorge);
         assertEquals(livroEsperado,livroNovo);
 
-        //Testa se está retornando mensagem de erro ao usuário com multa tentar criar empréstimo
+        /*
+        TestFAIL
+        Testa se está retornando mensagem de erro ao usuário com multa tentar criar empréstimo (PROIBIDO)
+         */
         assertThrows(IllegalArgumentException.class,() -> new Emprestimo("27/09/2023",Sara,Livro2));
 
-        //Testa se está retornando mensagem de erro ao tentar criar empréstimo com livro já emprestado
+        /*
+        TestFAIL
+        Testa se está retornando mensagem de erro ao tentar criar empréstimo com livro já emprestado (PROIBIDO)
+         */
         assertThrows(IllegalArgumentException.class,() -> new Emprestimo("27/09/2023",Tiago,Livro3));
 
 
@@ -72,16 +85,27 @@ public class EmprestimoTest {
 
     @Test
     void renovarEmprestimo() throws Exception {
-        //testa se está renovando empréstimo
+        /*
+        testa se está renovando empréstimo
+         */
         emprestimo1.renovarEmprestimo(LocalDate.of(2023,9,19));
 
-        //testa se empréstimo pode ser renovado antes da data de entrega(caso tente, deve lançar uma exceção)
+        /*
+        TestFAIL
+        testa se empréstimo pode ser renovado antes da data de entrega(caso tente, deve lançar uma exceção)
+         */
         assertThrows(IllegalArgumentException.class,() -> emprestimo1.renovarEmprestimo(LocalDate.of(2023,9,23)));
 
-        //testa se a nota data de devolução está correta
+        /*
+        TestFAIL
+        testa se a nota data de devolução está correta
+         */
         assertEquals(emprestimo1.getDataDevolver(),LocalDate.of(2023,9,26));
 
-        //testa se está tentando renovar empréstimo 2 vezes consecutivas == PROIBIDO
+        /*
+        TestFAIL
+        testa se está tentando renovar empréstimo 2 vezes consecutivas == PROIBIDO
+         */
         assertThrows(IllegalArgumentException.class,()-> emprestimo1.renovarEmprestimo(LocalDate.of(2023,9,26)));
 
 

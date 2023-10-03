@@ -15,6 +15,12 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+ * Classe responsável por realizar os testes dos métodos da classe EmprestimoDAO
+ * @author Ilson Marinho e Jhessé Campos
+ * @version 1.0
+ */
 public class EmprestimoDAOTest {
 
     Emprestimo emprestimo1;
@@ -52,6 +58,9 @@ public class EmprestimoDAOTest {
         Emprestimo atual = DAO.getEmprestimoDAO().create(new Emprestimo("19/09/2023",Sara,Livro3));
         Emprestimo esperado = DAO.getEmprestimoDAO().findbyID(2);
 
+        /*
+        Verificando se a lista esperada não está vazia e se é igual ao esperado, após criar um objeto no DAO
+         */
         assertEquals(esperado,atual,"Esse teste deveria passar!");
         assertNotNull(esperado,"Esse teste deveria passar!");
 
@@ -61,6 +70,10 @@ public class EmprestimoDAOTest {
     void deletarObj() throws Exception {
         DAO.getEmprestimoDAO().delete(emprestimo1);
         int atual = DAO.getEmprestimoDAO().read().size();
+
+        /*
+        Excluindo um objeto da lista e verificando se o tamanho atual é igual ao esperado;
+         */
         assertEquals(1,atual,"Esse teste deveria passar!");
     }
 
@@ -68,6 +81,10 @@ public class EmprestimoDAOTest {
     void deletarTudo() throws Exception{
         DAO.getEmprestimoDAO().deleteMany();
         int atual = DAO.getEmprestimoDAO().read().size();
+
+        /*
+        Como chamamos a função deleteMany, o tamanho da lista deve ser 0;
+         */
         assertEquals(0,atual,"Esse teste deveria passar!");
 
     }
@@ -77,12 +94,20 @@ public class EmprestimoDAOTest {
         emprestimo1.setDataEmprestimo("20/09/2023");
         emprestimo1.setUsuario(Sara);
         Emprestimo atual = DAO.getEmprestimoDAO().update(emprestimo1);
+
+        /*
+        Conferindo se o objeto está sendo atualizado no DAO
+         */
         assertEquals(emprestimo1,atual,"Esse teste deveria passar!");
     }
 
     @Test
     void lerTodaLista() throws Exception {
         int atual = DAO.getEmprestimoDAO().read().size();
+
+        /*
+        Como adicionamos apenas 2 Empréstimos para realizar os testes, o tamanho da lista total deve ser 2;
+         */
         assertEquals(2,atual,"Esse teste deveria passar!");
     }
 
@@ -91,13 +116,6 @@ public class EmprestimoDAOTest {
         Emprestimo atual = DAO.getEmprestimoDAO().findbyID(0);
         assertEquals(emprestimo1,atual,"Esse teste deveria passar!");
     }
-    @Test
-    void lerUsuario() throws Exception{
 
-    }
-    @Test
-    void lerUsuarioAtivo(){
-
-    }
 
 }

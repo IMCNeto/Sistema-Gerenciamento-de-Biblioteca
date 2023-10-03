@@ -14,6 +14,12 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+ * Classe responsável por realizar os testes dos métodos da classe Reserva
+ * @author Ilson Marinho e Jhessé Campos
+ * @version 1.0
+ */
 public class ReservaTest {
 
     Emprestimo emprestimo1;
@@ -46,8 +52,15 @@ public class ReservaTest {
         Emprestimo emprestimoNovo = DAO.getEmprestimoDAO().create(new Emprestimo("20/09/2023", Pedro, livro));
         Reserva reserva = DAO.getReservaDAO().create(new Reserva(usuario,livro));
 
+        /*
+        Conferindo se reserva está ativa;
+         */
         assertTrue(reserva.isStatus());
+
         reserva.finalizarReserva();
+        /*
+        Conferindo se reserva foi finalizada;
+         */
         assertFalse(reserva.isStatus());
 
     }

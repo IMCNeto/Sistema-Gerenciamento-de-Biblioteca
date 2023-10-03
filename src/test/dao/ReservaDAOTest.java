@@ -11,6 +11,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+ * Classe responsável por realizar os testes dos métodos da classe ReservaDAO
+ * @author Ilson Marinho e Jhessé Campos
+ * @version 1.0
+ */
 public class ReservaDAOTest {
     Reserva reserva1;
     Reserva reserva2;
@@ -47,6 +53,9 @@ public class ReservaDAOTest {
         Reserva atual = DAO.getReservaDAO().create(new Reserva(Sara,Livro1));
         Reserva esperado = DAO.getReservaDAO().findReserva(Sara,Livro1);
 
+        /*
+        Verificando se a lista esperada não está vazia e se é igual ao esperado, após criar um objeto no DAO
+         */
         assertEquals(esperado,atual,"Esse teste deveria passar!");
         assertNotNull(esperado,"Esse teste deveria passar!");
 
@@ -56,6 +65,10 @@ public class ReservaDAOTest {
     void deletarObj() throws Exception {
         DAO.getReservaDAO().delete(reserva1);
         int atual = DAO.getReservaDAO().read().size();
+
+        /*
+        Excluindo um objeto da lista e verificando se o tamanho atual é igual ao esperado;
+         */
         assertEquals(1,atual,"Esse teste deveria passar!");
     }
 
@@ -63,6 +76,10 @@ public class ReservaDAOTest {
     void deletarTudo() throws Exception{
         DAO.getReservaDAO().deleteMany();
         int atual = DAO.getReservaDAO().read().size();
+
+        /*
+        Como chamamos a função deleteMany, o tamanho da lista deve ser 0;
+         */
         assertEquals(0,atual,"Esse teste deveria passar!");
 
     }
@@ -72,12 +89,20 @@ public class ReservaDAOTest {
         reserva2.setLivro(Livro1);
         reserva2.setUsuario(Sara);
         Reserva atual = DAO.getReservaDAO().update(reserva2);
+
+        /*
+        Conferindo se o objeto está sendo atualizado no DAO
+         */
         assertEquals(reserva2,atual,"Esse teste deveria passar!");
     }
 
     @Test
     void lerTodaLista() throws Exception {
         int atual = DAO.getReservaDAO().read().size();
+
+        /*
+        Como adicionamos apenas 2 reservas para realizar os testes, o tamanho da lista total deve ser 2;
+         */
         assertEquals(2,atual,"Esse teste deveria passar!");
     }
 

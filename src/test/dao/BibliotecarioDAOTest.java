@@ -9,6 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
+/**
+ * Classe responsável por realizar os testes dos métodos da classe BibliotecárioDAO
+ * @author Ilson Marinho e Jhessé Campos
+ * @version 1.0
+ */
 public class BibliotecarioDAOTest {
 
     Bibliotecario Tiago;
@@ -34,6 +40,9 @@ public class BibliotecarioDAOTest {
         Bibliotecario atual = DAO.getBibliotecarioDAO().create(new Bibliotecario("Neto","0094"));
         Bibliotecario esperado = DAO.getBibliotecarioDAO().readID(4);
 
+        /*
+        Verificando se a lista esperada não está vazia e se é igual ao esperado, após criar um objeto no DAO
+         */
         assertEquals(esperado,atual,"Esse teste deveria passar!");
         assertNotNull(esperado,"Esse teste deveria passar!");
 
@@ -43,6 +52,10 @@ public class BibliotecarioDAOTest {
     void deletarObj() throws Exception {
         DAO.getBibliotecarioDAO().delete(Sara);
         int atual = DAO.getBibliotecarioDAO().read().size();
+
+        /*
+        Excluindo um objeto da lista e verificando se o tamanho atual é igual ao esperado;
+         */
         assertEquals(3,atual,"Esse teste deveria passar!");
     }
 
@@ -50,6 +63,10 @@ public class BibliotecarioDAOTest {
     void deletarTudo() throws Exception{
         DAO.getBibliotecarioDAO().deleteMany();
         int atual = DAO.getBibliotecarioDAO().read().size();
+
+        /*
+        Como chamamos a função deleteMany, o tamanho da lista deve ser 0;
+         */
         assertEquals(0,atual,"Esse teste deveria passar!");
 
     }
@@ -59,18 +76,30 @@ public class BibliotecarioDAOTest {
         Tiago.setSenha("0099");
         Tiago.setNome("Thiago");
         Bibliotecario atual = DAO.getBibliotecarioDAO().update(Tiago);
+
+        /*
+        Conferindo se o objeto está sendo atualizado no DAO
+         */
         assertEquals(Tiago,atual,"Esse teste deveria passar!");
     }
 
     @Test
     void lerTodaLista() throws Exception {
         int atual = DAO.getBibliotecarioDAO().read().size();
+
+        /*
+        Como adicionamos apenas 4 livros para realizar os testes, o tamanho da lista total deve ser 4;
+         */
         assertEquals(4,atual,"Esse teste deveria passar!");
     }
 
     @Test
     void lerID() throws Exception{
         Bibliotecario atual = DAO.getBibliotecarioDAO().readID(1);
+
+        /*
+        Pedro é o bibliotecário com ID 1, logo deve ser o atual;
+         */
         assertEquals(Pedro,atual,"Esse teste deveria passar!");
     }
 }
