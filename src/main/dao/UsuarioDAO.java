@@ -4,6 +4,7 @@ import main.Interfaces.UsuarioCRUD;
 import main.model.Emprestimo;
 import main.model.Usuario;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,8 +162,9 @@ public class UsuarioDAO implements UsuarioCRUD {
      * @return Lista de usuários bloqueados;
      */
     @Override
-    public List<Usuario> usuariosBloqueados(List<Emprestimo> emp) throws Exception {
+    public List<Usuario> usuariosBloqueados(LocalDate dataAtual) throws Exception {
         try {
+            List<Emprestimo> emp = DAO.getEmprestimoDAO().atrasados(dataAtual);
             List<Usuario> listaUsuariosBloqueados = new ArrayList<Usuario>();
             for(Emprestimo obj : emp){
                 listaUsuariosBloqueados.add(obj.getUsuario());

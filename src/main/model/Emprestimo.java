@@ -195,7 +195,7 @@ public class Emprestimo {
         /*
         Verifica se o usuário não está bloqueado
          */
-        if(DAO.getUsuarioDAO().usuariosBloqueados(DAO.getEmprestimoDAO().atrasados(dataAtual)).contains(this.usuario)){
+        if(DAO.getUsuarioDAO().usuariosBloqueados(dataAtual).contains(this.usuario)){
             throw new IllegalArgumentException("Usuário não pode realizar empréstimo");
         }
 
