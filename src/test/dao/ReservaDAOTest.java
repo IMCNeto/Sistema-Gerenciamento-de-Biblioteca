@@ -10,6 +10,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -135,6 +138,21 @@ public class ReservaDAOTest {
          */
 
         assertEquals(esperada,reserva2);
+
+    }
+
+    @Test
+    void lerReservaAtiva() throws Exception{
+        /*
+        Alterando o status da reserva2, uma das duas reservas existentes, para false. Logo, a lista de reservas ativas deverá conter um elemento que é a reserva1!
+         */
+        reserva2.setStatus(false);
+        DAO.getReservaDAO().update(reserva2);
+        List<Reserva> atual = DAO.getReservaDAO().findReservaActive();
+        List<Reserva> esperado = new ArrayList<>();
+        esperado.add(reserva1);
+
+        assertArrayEquals(new List[]{atual}, new List[]{esperado},"Esse Teste deveria passar");
 
     }
 }
