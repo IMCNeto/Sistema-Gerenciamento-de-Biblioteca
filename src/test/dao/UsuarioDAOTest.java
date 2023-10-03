@@ -1,10 +1,16 @@
 package test.dao;
 
 import main.dao.DAO;
+import main.model.Emprestimo;
+import main.model.Livro;
 import main.model.Usuario;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -95,6 +101,28 @@ public class UsuarioDAOTest {
     void lerID() throws Exception{
         Usuario atual = DAO.getUsuarioDAO().readID(1);
         assertEquals(Pedro,atual,"Esse teste deveria passar!");
+    }
+
+    @Test
+    void usuariosBloqueados() throws Exception {
+        Usuario Sara = DAO.getUsuarioDAO().create(new Usuario("Sara","75982830093","R. D,13,Feira VI"));
+        Usuario Pedro = DAO.getUsuarioDAO().create(new Usuario("Pedro","75982830091","R. B,14,Feira VI"));
+        Livro Livro1 = DAO.getLivroDAO().create(new Livro("O cortiço","Aluísio","A","AAR20","Romance",2000));
+        Livro Livro2 = DAO.getLivroDAO().create(new Livro("O beijo","Joaozinho","B","BJR20","Romance",2000));
+        Emprestimo emprestimo1 = DAO.getEmprestimoDAO().create(new Emprestimo("12/09/2023",Sara,Livro1));
+        Emprestimo emprestimo2 = DAO.getEmprestimoDAO().create(new Emprestimo("16/09/2023",Pedro,Livro2));
+
+        List<Usuario> atual = DAO.getUsuarioDAO().usuariosBloqueados(LocalDate.of(2023,9,25));
+
+        /*
+        Na data passada como parâmetro, dois usuários estão bloqueados por empréstimos atrasados, Sara e Pedro, logo a lista esperada contém os dois;
+         */
+
+        List<Usuario> esperada = new ArrayList<>();
+        esperada.add(Sara);esperada.add(Pedro);
+
+        assertEquals(atual,esperada);
+
     }
 
 

@@ -1,6 +1,7 @@
 package test.dao;
 
 import main.dao.DAO;
+import main.dao.ReservaDAO;
 import main.model.Emprestimo;
 import main.model.Livro;
 import main.model.Reserva;
@@ -25,6 +26,9 @@ public class ReservaDAOTest {
     Usuario Sara;
     Livro Livro1;
     Livro Livro2;
+
+    public ReservaDAOTest() throws Exception {
+    }
 
     @BeforeEach
     void setUp() throws Exception {
@@ -110,6 +114,28 @@ public class ReservaDAOTest {
     void lerID() throws Exception{
         Reserva atual = DAO.getReservaDAO().findReserva(Tiago,Livro1);
         assertEquals(reserva1,atual,"Esse teste deveria passar!");
+    }
+
+    @Test
+    void findReserva() throws Exception {
+        Reserva esperada = DAO.getReservaDAO().findReserva(Tiago, Livro1);
+
+    /*
+    reserva1 foi realizada pelo usuário Tiago, reservando o livro, logo esperada tem que ser igual a reserva1;
+     */
+        assertEquals(esperada,reserva1);
+    }
+
+    @Test
+    void firstReservaLivro() throws Exception {
+        Reserva esperada = DAO.getReservaDAO().firstReservaLivro(Livro2);
+
+        /*
+        A única reserva do Livro 2 foi a reserva 2, logo ela é a primeira e deve ser comparada com a esperada
+         */
+
+        assertEquals(esperada,reserva2);
+
     }
 }
 
