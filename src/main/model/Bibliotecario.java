@@ -3,7 +3,7 @@ package main.model;
 import main.dao.DAO;
 
 
-/** Classe para objetos do tipo administrador, onde serão contidos os valores e métodos para o mesmo;
+/** Classe para objetos do tipo bibliotecário, onde serão contidos os valores e métodos para o mesmo;
  * @author Ilson Marinho e Jhessé Campos;
  * @version 1.0;
  */
