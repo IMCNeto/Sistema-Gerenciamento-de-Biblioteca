@@ -2,6 +2,7 @@ package com.uefs.sigbiblioteca.model;
 
 import com.uefs.sigbiblioteca.dao.DAO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -13,7 +14,7 @@ import java.time.temporal.ChronoUnit;
  * @version 1.0
  */
 
-public class Emprestimo {
+public class Emprestimo implements Serializable {
 
     /**
      * Data que o empréstimo foi realizado;

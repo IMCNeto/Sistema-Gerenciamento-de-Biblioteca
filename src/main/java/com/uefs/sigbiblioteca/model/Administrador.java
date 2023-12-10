@@ -1,11 +1,13 @@
 package com.uefs.sigbiblioteca.model;
 
 
+import java.io.Serializable;
+
 /** Classe para objetos do tipo administrador, onde serão contidos os valores e métodos para o mesmo
  * @author Ilson Marinho e Jhessé Campos
  * @version 1.0
  */
-public class Administrador {
+public class Administrador implements Serializable {
 
     /**
      * Guarda o nome do Objeto

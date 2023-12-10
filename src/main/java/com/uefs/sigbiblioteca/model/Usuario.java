@@ -2,6 +2,7 @@ package com.uefs.sigbiblioteca.model;
 
 import com.uefs.sigbiblioteca.dao.DAO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -11,7 +12,7 @@ import java.time.temporal.ChronoUnit;
  * @version 1.0;
  */
 
-public class Usuario {
+public class Usuario implements Serializable {
 
     /**
      * Guarda nome do objeto;

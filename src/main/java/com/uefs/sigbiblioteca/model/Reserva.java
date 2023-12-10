@@ -2,13 +2,15 @@ package com.uefs.sigbiblioteca.model;
 
 import com.uefs.sigbiblioteca.dao.DAO;
 
+import java.io.Serializable;
+
 
 /** Classe para objetos do tipo reserva, onde serão contidos os valores e métodos para o mesmo;
  * @author Ilson Marinho e Jhessé Campos;
  * @version 1.0;
  */
 
-public class Reserva {
+public class Reserva implements Serializable {
 
     /**
      * Objeto do tipo Usuário que está realizando a reserva;

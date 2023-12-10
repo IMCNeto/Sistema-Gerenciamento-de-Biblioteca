@@ -2,13 +2,15 @@ package com.uefs.sigbiblioteca.model;
 
 import com.uefs.sigbiblioteca.dao.DAO;
 
+import java.io.Serializable;
+
 
 /** Classe para objetos do tipo livro, onde serão contidos os valores e métodos para o mesmo;
  * @author Ilson Marinho e Jhessé Campos;
  * @version 1.0;
  */
 
-public class Livro {
+public class Livro implements Serializable {
 
     /**
      * Nome do título do objeto livro;

@@ -2,13 +2,15 @@ package com.uefs.sigbiblioteca.model;
 
 import com.uefs.sigbiblioteca.dao.DAO;
 
+import java.io.Serializable;
+
 
 /** Classe para objetos do tipo bibliotecário, onde serão contidos os valores e métodos para o mesmo;
  * @author Ilson Marinho e Jhessé Campos;
  * @version 1.0;
  */
 
-public class Bibliotecario {
+public class Bibliotecario implements Serializable {
 
     /**
      * Guarda nome do objeto;
