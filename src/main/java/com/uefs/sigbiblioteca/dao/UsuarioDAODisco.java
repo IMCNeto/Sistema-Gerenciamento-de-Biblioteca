@@ -16,20 +16,40 @@ import static com.uefs.sigbiblioteca.utilities.GerenciadorDeArquivos.criar_arqui
 
 public class UsuarioDAODisco implements UsuarioCRUD {
 
+    /**
+     * Arquivo que armazena as informações sobre os bibliotecarioss;
+     */
     File arquivo;
+
+    /**
+     * ArrayList que guarda todos os administradores;
+     */
     private ArrayList<Usuario> lista;
 
+    /**
+     * Construtor que inicializa a classe;
+     */
     public UsuarioDAODisco() {
         arquivo = criar_arquivo("usuario");
         this.lista = carregar_arquivo(arquivo);
 
     }
 
+    /**
+     * Método que retorna um novo ID que ainda não foi utilizado;
+     * @return INT - prox_id e incrementa 1 em prox_id;
+     */
     private int getProximoID() {
         int i = lista.size();
         return i++;
     }
 
+    /**
+     * Método que cria o objeto na lista de dados (Necessário para persistência de dados);
+     *
+     * @param obj Objeto do tipo usuário;
+     * @return Objeto do tipo usuário;
+     */
     @Override
     public Usuario create(Usuario obj) throws Exception {
         try {
@@ -136,7 +156,12 @@ public class UsuarioDAODisco implements UsuarioCRUD {
         }
     }
 
-
+    /**
+     * Método que procura lista de usuários que estão bloqueados devido a atrasos de empréstimos;
+     *
+     * @param dataAtual Data atual para calcular os usuários;
+     * @return Lista de usuários bloqueados;
+     */
     @Override
     public List<Usuario> usuariosBloqueados(LocalDate dataAtual) throws Exception {
         try {

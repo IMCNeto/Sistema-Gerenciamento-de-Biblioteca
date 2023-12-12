@@ -13,20 +13,39 @@ import static com.uefs.sigbiblioteca.utilities.GerenciadorDeArquivos.criar_arqui
 
 public class BibliotecarioDAODisco {
 
+    /**
+     * Arquivo que armazena as informações sobre os bibliotecarioss;
+     */
     File arquivo;
+
+    /**
+     * ArrayList que guarda todos os administradores;
+     */
     private ArrayList<Bibliotecario> lista;
 
+    /**
+     * Construtor que inicializa a classe;
+     */
     public BibliotecarioDAODisco() {
         arquivo = criar_arquivo("bibliotecario");
         this.lista = carregar_arquivo(arquivo);
     }
 
+    /**
+     * Método que retorna um novo ID que ainda não foi utilizado;
+     * @return INT - prox_id e incrementa 1 em prox_id;
+     */
     private int getProximoID() {
         int i = lista.size();
         return i++;
     }
 
-
+    /**
+     * Método que cria o objeto na lista de dados (Necessário para persistência de dados);
+     *
+     * @param obj Objeto do tipo Bibliotecário;
+     * @return Objeto do tipo Bibliotecário;
+     */
     public Bibliotecario create(Bibliotecario obj) throws Exception {
         try {
             int index = this.getProximoID();

@@ -272,15 +272,19 @@ public class LivroDAO implements LivroCRUD {
     }
 
     /**
-     * Método que
-     * @return
-     * @throws Exception
+     * Método responsável por retornar o número total de livros emprestados
+     * @return INT - retorna a quantidade de livros emprestados
+     *
      */
     @Override
     public int numEmp() throws Exception {
         return DAO.getEmprestimoDAO().findEmpActive().size();
     }
 
+    /**
+     * Método responsável por retornar o número de livros reservados
+     * @return INT - retorna a quantidade de livros reservados
+     */
     @Override
     public int numReserved() throws Exception {
         return DAO.getReservaDAO().findReservaActive().size();

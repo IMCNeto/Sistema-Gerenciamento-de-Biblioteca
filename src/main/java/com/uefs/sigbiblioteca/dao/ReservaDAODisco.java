@@ -16,20 +16,40 @@ import static com.uefs.sigbiblioteca.utilities.GerenciadorDeArquivos.criar_arqui
 
 public class ReservaDAODisco implements ReservaCRUD {
 
+    /**
+     * Arquivo que armazena as informações sobre os bibliotecarioss;
+     */
     File arquivo;
+
+    /**
+     * ArrayList que guarda todos os administradores;
+     */
     private ArrayList<Reserva> lista;
 
+    /**
+     * Construtor que inicializa a classe;
+     */
     public ReservaDAODisco() {
         arquivo = criar_arquivo("reserva");
         this.lista = carregar_arquivo(arquivo);
 
     }
 
+    /**
+     * Método que retorna um novo ID que ainda não foi utilizado;
+     * @return INT - prox_id e incrementa 1 em prox_id;
+     */
     private int getProximoID() {
         int i = lista.size();
         return i++;
     }
 
+    /**
+     * Método que cria o objeto na lista de dados (Necessário para persistência de dados);
+     *
+     * @param obj Objeto do tipo Reserva;
+     * @return Objeto do tipo Reserva;
+     */
     @Override
     public Reserva create(Reserva obj) throws Exception {
         try {

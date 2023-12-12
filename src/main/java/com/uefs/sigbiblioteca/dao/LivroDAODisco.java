@@ -18,20 +18,40 @@ import static com.uefs.sigbiblioteca.utilities.GerenciadorDeArquivos.criar_arqui
 
 public class LivroDAODisco implements LivroCRUD {
 
+    /**
+     * Arquivo que armazena as informações sobre os bibliotecarioss;
+     */
     File arquivo;
+
+    /**
+     * ArrayList que guarda todos os administradores;
+     */
     private ArrayList<Livro> lista;
 
+    /**
+     * Construtor que inicializa a classe;
+     */
     public LivroDAODisco() {
         arquivo = criar_arquivo("livro");
         this.lista = carregar_arquivo(arquivo);
 
     }
 
+    /**
+     * Método que retorna um novo ID que ainda não foi utilizado;
+     * @return INT - prox_id e incrementa 1 em prox_id;
+     */
     private int getProximoID() {
         int i = lista.size();
         return i++;
     }
 
+    /**
+     * Método que cria o objeto na lista de dados (Necessário para persistência de dados);
+     *
+     * @param objeto Objeto do tipo Livro;
+     * @return Objeto do tipo Livro;
+     */
     @Override
     public Livro create(Livro objeto) throws Exception {
         int index = this.getProximoID();
@@ -250,12 +270,20 @@ public class LivroDAODisco implements LivroCRUD {
         return DAO.getEmprestimoDAO().atrasados(dataAtual).size();
     }
 
-
+    /**
+     * Método responsável por retornar o número total de livros emprestados
+     * @return INT - retorna a quantidade de livros emprestados
+     *
+     */
     @Override
     public int numEmp() throws Exception {
         return DAO.getEmprestimoDAO().findEmpActive().size();
     }
 
+    /**
+     * Método responsável por retornar o número de livros reservados
+     * @return INT - retorna a quantidade de livros reservados
+     */
     @Override
     public int numReserved() throws Exception {
         return DAO.getReservaDAO().findReservaActive().size();

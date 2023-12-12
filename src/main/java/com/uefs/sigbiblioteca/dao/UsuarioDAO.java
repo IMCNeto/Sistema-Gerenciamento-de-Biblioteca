@@ -158,7 +158,7 @@ public class UsuarioDAO implements UsuarioCRUD {
     /**
      * Método que procura lista de usuários que estão bloqueados devido a atrasos de empréstimos;
      *
-     * @param emp Lista geral de empréstimos;
+     * @param dataAtual Data atual para calcular os usuários;
      * @return Lista de usuários bloqueados;
      */
     @Override
