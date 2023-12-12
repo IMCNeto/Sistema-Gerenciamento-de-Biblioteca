@@ -28,6 +28,11 @@ public class EmprestimoTest {
     Livro Livro2;
     Livro Livro3;
     ArrayList<Emprestimo> lista;
+
+    /**
+     * Método executado antes de cada teste para preenchimento dos dados para realizar os testes;
+     *
+     */
     @BeforeEach
     void setUp() throws Exception {
 
@@ -48,6 +53,11 @@ public class EmprestimoTest {
 
     }
 
+    /**
+     * Método executado após cada teste, responsável por apagar os dados do armazenamento, para que não ocorra erros
+     * nos testes;
+     *
+     */
     @AfterEach
     void tearDown() throws Exception {
         DAO.getEmprestimoDAO().deleteMany();
@@ -55,8 +65,10 @@ public class EmprestimoTest {
         DAO.getUsuarioDAO().deleteMany();
     }
 
+    /**
+     * Caso de teste que verifica se a criação de um empréstimo está ocorrendo corretamente
+     */
     @Test
-
     void criarEmprestimo() throws Exception {
         Usuario jorge = DAO.getUsuarioDAO().create(new Usuario("Jorge","75992340987","R. A,14, Feira VI"));
         Livro livroNovo = DAO.getLivroDAO().create(new Livro("Enrolados","Abreu","D","DAR20","Romance",2000));
@@ -83,6 +95,9 @@ public class EmprestimoTest {
     }
 
 
+    /**
+     * Caso de teste que verifica se a renovação de um empréstimo está ocorrendo corretamente
+     */
     @Test
     void renovarEmprestimo() throws Exception {
         /*

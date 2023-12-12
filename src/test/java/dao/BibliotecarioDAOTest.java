@@ -22,6 +22,10 @@ public class BibliotecarioDAOTest {
     Bibliotecario Maria;
     Bibliotecario Sara;
 
+    /**
+     * Método executado antes de cada teste para preenchimento dos dados para realizar os testes;
+     *
+     */
     @BeforeEach
     void setUp() throws Exception {
         Tiago = DAO.getBibliotecarioDAO().create(new Bibliotecario("Tiago","0090"));
@@ -30,6 +34,11 @@ public class BibliotecarioDAOTest {
         Sara = DAO.getBibliotecarioDAO().create(new Bibliotecario("Sara","0093"));
     }
 
+    /**
+     * Método executado após cada teste, responsável por apagar os dados do armazenamento, para que não ocorra erros
+     * nos testes;
+     *
+     */
     @AfterEach
     void tearDown() throws Exception {
         DAO.getLivroDAO().deleteMany();
@@ -40,6 +49,11 @@ public class BibliotecarioDAOTest {
         DAO.getAdministradorDAO().deleteMany();
     }
 
+    /**
+     * Caso de teste que verifica se está funcionando a implementação de um novo bibliotecário no armazenamento de dados
+     * através do DAO;
+     *
+     */
     @Test
     void criar() throws Exception {
         Bibliotecario atual = DAO.getBibliotecarioDAO().create(new Bibliotecario("Neto","0094"));
@@ -53,6 +67,11 @@ public class BibliotecarioDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se ao tentar deletar um bibliotecário do DAO, ele deleta;
+     * Inicialmente a lista contém 4 bibliotecários, utilizamos o método de DELETE e verificamos se a lista diminuiu;
+     */
+
     @Test
     void deletarObj() throws Exception {
         DAO.getBibliotecarioDAO().delete(Sara);
@@ -64,6 +83,10 @@ public class BibliotecarioDAOTest {
         assertEquals(3,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se todos os dados sobre bibliotecários são apagados se utilizar o método de deletar tudo;
+     *
+     */
     @Test
     void deletarTudo() throws Exception{
         DAO.getBibliotecarioDAO().deleteMany();
@@ -76,6 +99,10 @@ public class BibliotecarioDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se a atualização de dados está sendo feita de forma correta pelo DAO;
+     *
+     */
     @Test
     void atualizar() throws Exception {
         Tiago.setSenha("0099");
@@ -88,6 +115,10 @@ public class BibliotecarioDAOTest {
         assertEquals(Tiago,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se a lista completa de bibliotecários está sendo retornada corretamente;
+     *
+     */
     @Test
     void lerTodaLista() throws Exception {
         int atual = DAO.getBibliotecarioDAO().read().size();
@@ -98,6 +129,10 @@ public class BibliotecarioDAOTest {
         assertEquals(4,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se quando buscamos um bibliotecário por um ID, ele está sendo retornado;
+     *
+     */
     @Test
     void lerID() throws Exception{
         Bibliotecario atual = DAO.getBibliotecarioDAO().readID(1);

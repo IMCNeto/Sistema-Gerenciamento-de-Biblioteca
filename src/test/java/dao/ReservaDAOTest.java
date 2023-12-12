@@ -32,6 +32,10 @@ public class ReservaDAOTest {
     public ReservaDAOTest() throws Exception {
     }
 
+    /**
+     * Método executado antes de cada teste para preenchimento dos dados para realizar os testes;
+     *
+     */
     @BeforeEach
     void setUp() throws Exception {
         Sara = DAO.getUsuarioDAO().create(new Usuario("Sara","75982830093","R. D,13,Feira VI"));
@@ -46,6 +50,11 @@ public class ReservaDAOTest {
 
     }
 
+    /**
+     * Método executado após cada teste, responsável por apagar os dados do armazenamento, para que não ocorra erros
+     * nos testes;
+     *
+     */
     @AfterEach
     void tearDown() throws Exception {
         DAO.getLivroDAO().deleteMany();
@@ -56,6 +65,11 @@ public class ReservaDAOTest {
         DAO.getAdministradorDAO().deleteMany();
     }
 
+    /**
+     * Caso de teste que verifica se está funcionando a implementação de uma nova reserva no armazenamento de dados
+     * através do DAO;
+     *
+     */
     @Test
     void criar() throws Exception {
         Reserva atual = DAO.getReservaDAO().create(new Reserva(Sara,Livro1));
@@ -69,6 +83,10 @@ public class ReservaDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se ao tentar deletar uma reserva do DAO, ela deleta;
+     * Inicialmente a lista contém 2 reservas, utilizamos o método de DELETE e verificamos se a lista diminuiu;
+     */
     @Test
     void deletarObj() throws Exception {
         DAO.getReservaDAO().delete(reserva1);
@@ -80,6 +98,10 @@ public class ReservaDAOTest {
         assertEquals(1,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se todos os dados sobre reservas são apagados se utilizar o método de deletar tudo;
+     *
+     */
     @Test
     void deletarTudo() throws Exception{
         DAO.getReservaDAO().deleteMany();
@@ -92,6 +114,10 @@ public class ReservaDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se a atualização de dados está sendo feita de forma correta pelo DAO;
+     *
+     */
     @Test
     void atualizar() throws Exception {
         reserva2.setLivro(Livro1);
@@ -104,6 +130,10 @@ public class ReservaDAOTest {
         assertEquals(reserva2,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se a lista completa de reservas está sendo retornada corretamente;
+     *
+     */
     @Test
     void lerTodaLista() throws Exception {
         int atual = DAO.getReservaDAO().read().size();
@@ -114,12 +144,21 @@ public class ReservaDAOTest {
         assertEquals(2,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se quando buscamos uma reserva por um ID, ela está sendo retornado;
+     *
+     */
     @Test
     void lerID() throws Exception{
         Reserva atual = DAO.getReservaDAO().findReserva(Tiago,Livro1);
         assertEquals(reserva1,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se quando buscamos uma reserva passando o usuário que solicitou e o livro
+     * reservado, ela retorna corretamente;
+     *
+     */
     @Test
     void findReserva() throws Exception {
         Reserva esperada = DAO.getReservaDAO().findReserva(Tiago, Livro1);
@@ -130,6 +169,11 @@ public class ReservaDAOTest {
         assertEquals(esperada,reserva1);
     }
 
+    /**
+     * Caso de teste que verifica se o DAO das reservas retorna corretamente a primeira reserva de um determinado
+     * livro;
+     *
+     */
     @Test
     void firstReservaLivro() throws Exception {
         Reserva esperada = DAO.getReservaDAO().firstReservaLivro(Livro2);
@@ -142,6 +186,10 @@ public class ReservaDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se o DAO das reservas retorna corretamente a lista de reservas ativas
+     *
+     */
     @Test
     void lerReservaAtiva() throws Exception{
         /*

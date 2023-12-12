@@ -30,6 +30,10 @@ public class EmprestimoDAOTest {
     Livro Livro3;
     ArrayList<Emprestimo> lista;
 
+    /**
+     * Método executado antes de cada teste para preenchimento dos dados para realizar os testes;
+     *
+     */
     @BeforeEach
     void setUp() throws Exception {
         Sara = DAO.getUsuarioDAO().create(new Usuario("Sara","75982830093","R. D,13,Feira VI"));
@@ -43,6 +47,11 @@ public class EmprestimoDAOTest {
 
     }
 
+    /**
+     * Método executado após cada teste, responsável por apagar os dados do armazenamento, para que não ocorra erros
+     * nos testes;
+     *
+     */
     @AfterEach
     void tearDown() throws Exception {
         DAO.getLivroDAO().deleteMany();
@@ -53,6 +62,11 @@ public class EmprestimoDAOTest {
         DAO.getAdministradorDAO().deleteMany();
     }
 
+    /**
+     * Caso de teste que verifica se está funcionando a implementação de um novo empréstimo no armazenamento de dados
+     * através do DAO;
+     *
+     */
     @Test
     void criar() throws Exception {
         Emprestimo atual = DAO.getEmprestimoDAO().create(new Emprestimo("19/09/2023",Sara,Livro3));
@@ -66,6 +80,10 @@ public class EmprestimoDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se ao tentar deletar um empréstimo do DAO, ele deleta;
+     * Inicialmente a lista contém 2 empréstimos, utilizamos o método de DELETE e verificamos se a lista diminuiu;
+     */
     @Test
     void deletarObj() throws Exception {
         DAO.getEmprestimoDAO().delete(emprestimo1);
@@ -77,6 +95,10 @@ public class EmprestimoDAOTest {
         assertEquals(1,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se todos os dados sobre empréstimos são apagados se utilizar o método de deletar tudo;
+     *
+     */
     @Test
     void deletarTudo() throws Exception{
         DAO.getEmprestimoDAO().deleteMany();
@@ -89,6 +111,10 @@ public class EmprestimoDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se a atualização de dados está sendo feita de forma correta pelo DAO;
+     *
+     */
     @Test
     void atualizar() throws Exception {
         emprestimo1.setDataEmprestimo("20/09/2023");
@@ -101,6 +127,10 @@ public class EmprestimoDAOTest {
         assertEquals(emprestimo1,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se a lista completa de empréstimos está sendo retornada corretamente;
+     *
+     */
     @Test
     void lerTodaLista() throws Exception {
         int atual = DAO.getEmprestimoDAO().read().size();
@@ -111,6 +141,10 @@ public class EmprestimoDAOTest {
         assertEquals(2,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se quando buscamos um empréstimo por um ID, ele está sendo retornado;
+     *
+     */
     @Test
     void lerID() throws Exception{
         Emprestimo atual = DAO.getEmprestimoDAO().findbyID(0);

@@ -26,6 +26,10 @@ public class UsuarioDAOTest {
     Usuario Maria;
     Usuario Sara;
 
+    /**
+     * Método executado antes de cada teste para preenchimento dos dados para realizar os testes;
+     *
+     */
     @BeforeEach
     void setUp() throws Exception {
         Tiago = DAO.getUsuarioDAO().create(new Usuario("Tiago","75982830090","R. A,11,Feira VI"));
@@ -34,6 +38,11 @@ public class UsuarioDAOTest {
         Sara = DAO.getUsuarioDAO().create(new Usuario("Sara","75982830093","R. D,13,Feira VI"));
     }
 
+    /**
+     * Método executado após cada teste, responsável por apagar os dados do armazenamento, para que não ocorra erros
+     * nos testes;
+     *
+     */
     @AfterEach
     void tearDown() throws Exception {
         DAO.getLivroDAO().deleteMany();
@@ -44,6 +53,11 @@ public class UsuarioDAOTest {
         DAO.getAdministradorDAO().deleteMany();
     }
 
+    /**
+     * Caso de teste que verifica se está funcionando a implementação de um novo usuário no armazenamento de dados
+     * através do DAO;
+     *
+     */
     @Test
     void criar() throws Exception {
        Usuario atual = DAO.getUsuarioDAO().create(new Usuario("Rute","75982830094","R. E,8,Feira VI"));
@@ -57,6 +71,10 @@ public class UsuarioDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se ao tentar deletar um usuário do DAO, ele deleta;
+     * Inicialmente a lista contém 4 usuários, utilizamos o método de DELETE e verificamos se a lista diminuiu;
+     */
     @Test
     void deletarObj() throws Exception {
         DAO.getUsuarioDAO().delete(Sara);
@@ -68,6 +86,10 @@ public class UsuarioDAOTest {
         assertEquals(3,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se todos os dados sobre os usuários são apagados se utilizar o método de deletar tudo;
+     *
+     */
     @Test
     void deletarTudo() throws Exception{
         DAO.getUsuarioDAO().deleteMany();
@@ -80,6 +102,10 @@ public class UsuarioDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se a atualização de dados está sendo feita de forma correta pelo DAO;
+     *
+     */
     @Test
     void atualizar() throws Exception {
         Tiago.setNome("Thiago");
@@ -92,6 +118,10 @@ public class UsuarioDAOTest {
         assertEquals(Tiago,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se a lista completa de usuários está sendo retornada corretamente;
+     *
+     */
     @Test
     void lerTodaLista() throws Exception {
         int atual = DAO.getUsuarioDAO().read().size();
@@ -102,12 +132,20 @@ public class UsuarioDAOTest {
         assertEquals(4,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se quando buscamos um usuário por um ID, ele está sendo retornado;
+     *
+     */
     @Test
     void lerID() throws Exception{
         Usuario atual = DAO.getUsuarioDAO().readID(1);
         assertEquals(Pedro,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se o DAO retorna corretamente a lista de usuários bloqueados de um
+     * determinado momento;
+     */
     @Test
     void usuariosBloqueados() throws Exception {
         Usuario Sara = DAO.getUsuarioDAO().create(new Usuario("Sara","75982830093","R. D,13,Feira VI"));

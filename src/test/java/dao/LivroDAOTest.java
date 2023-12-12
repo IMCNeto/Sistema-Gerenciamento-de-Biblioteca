@@ -28,6 +28,10 @@ public class LivroDAOTest {
     Livro livro4;
     Livro livro5;
 
+    /**
+     * Método executado antes de cada teste para preenchimento dos dados para realizar os testes;
+     *
+     */
     @BeforeEach
     void setUp() throws Exception {
 
@@ -39,6 +43,11 @@ public class LivroDAOTest {
         livro5 = DAO.getLivroDAO().create(new Livro("Enrolados","Abreu","D","DAR20","Romance",2000));
     }
 
+    /**
+     * Método executado após cada teste, responsável por apagar os dados do armazenamento, para que não ocorra erros
+     * nos testes;
+     *
+     */
     @AfterEach
     void tearDown() throws Exception {
         DAO.getLivroDAO().deleteMany();
@@ -49,7 +58,11 @@ public class LivroDAOTest {
         DAO.getAdministradorDAO().deleteMany();
     }
 
-
+    /**
+     * Caso de teste que verifica se está funcionando a implementação de um novo livro no armazenamento de dados
+     * através do DAO;
+     *
+     */
     @Test
     void criar() throws Exception {
         Livro atual = DAO.getLivroDAO().create(new Livro("Capitães de areia","Jorge Amado","D","DJC20","Conto",2001));
@@ -62,6 +75,10 @@ public class LivroDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se ao tentar deletar um livro do DAO, ele deleta;
+     * Inicialmente a lista contém 5 livros, utilizamos o método de DELETE e verificamos se a lista diminuiu;
+     */
     @Test
     void deletarObj() throws Exception {
         DAO.getLivroDAO().delete(livro4);
@@ -73,6 +90,10 @@ public class LivroDAOTest {
         assertEquals(4,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se todos os dados sobre empréstimos são apagados se utilizar o método de deletar tudo;
+     *
+     */
     @Test
     void deletarTudo() throws Exception{
         DAO.getLivroDAO().deleteMany();
@@ -85,6 +106,10 @@ public class LivroDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se a atualização de dados está sendo feita de forma correta pelo DAO;
+     *
+     */
     @Test
     void atualizar() throws Exception {
         livro2.setEditora("Z");
@@ -99,6 +124,10 @@ public class LivroDAOTest {
         assertEquals(livro2,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se a lista completa de empréstimos está sendo retornada corretamente;
+     *
+     */
     @Test
     void lerTodaLista() throws Exception {
         int atual = DAO.getLivroDAO().read().size();
@@ -109,6 +138,10 @@ public class LivroDAOTest {
         assertEquals(5,atual,"Esse teste deveria passar!");
     }
 
+    /**
+     * Caso de teste que verifica se quando buscamos um livro por um ISBN, a lista de livros que contém esse ISBN está sendo retornada;
+     *
+     */
     @Test
     void lerISBN() throws Exception{
         List<Livro> atual = DAO.getLivroDAO().readByISBN("CTC20");
@@ -121,6 +154,10 @@ public class LivroDAOTest {
         assertArrayEquals(new List[]{atual}, new List[]{esperado},"Esse Teste deveria passar");
     }
 
+    /**
+     * Caso de teste que verifica se quando buscamos um livro por um título, a lista de livros contendo este título está sendo retornada;
+     *
+     */
     @Test
     void lerTitulo() throws Exception{
         List<Livro> atual = DAO.getLivroDAO().readByTitulo("cangaço");
@@ -133,6 +170,10 @@ public class LivroDAOTest {
         assertArrayEquals(new List[]{atual}, new List[]{esperado},"Esse Teste deveria passar");
     }
 
+    /**
+     * Caso de teste que verifica se quando buscamos um livro por um autor a lista de livros deste autor está sendo retornada;
+     *
+     */
     @Test
     void lerAutor() throws Exception{
         List<Livro> atual = DAO.getLivroDAO().readByAutor("Abreu");
@@ -145,8 +186,10 @@ public class LivroDAOTest {
         assertArrayEquals(new List[]{atual}, new List[]{esperado},"Esse Teste deveria passar");
     }
 
-
-
+    /**
+     * Caso de teste que verifica se quando buscamos um livro por uma categoria, a lista de livros nesta categoria está sendo retornada;
+     *
+     */
     @Test
     void lerCategoria() throws Exception{
         List<Livro> atual =  DAO.getLivroDAO().readByCategoria("Romance");
@@ -160,6 +203,10 @@ public class LivroDAOTest {
         assertEquals(atual, esperado,"Esse teste deveria passar");
     }
 
+    /**
+     * Caso de teste que verifica se o método do DAO retorna corretamente o livro que foi mais vezes emprestado;
+     *
+     */
     @Test
     void readMoreUsed() throws Exception {
 
@@ -197,7 +244,10 @@ public class LivroDAOTest {
 
     }
 
-
+    /**
+     * Caso de teste que verifica se o DAO está retornando corretamente a quantidade de livros com empréstimos atrasados do momento;
+     *
+     */
     @Test
     void numBorrowed() throws Exception {
         Usuario Tiago = DAO.getUsuarioDAO().create(new Usuario("Tiago","75982830090","R. A,11,Feira VI"));
@@ -222,6 +272,10 @@ public class LivroDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se o DAO está retornando corretamente a quantidade de livros emprestados do momento;
+     *
+     */
     @Test
     void numEmp() throws Exception {
         Usuario Tiago = DAO.getUsuarioDAO().create(new Usuario("Tiago","75982830090","R. A,11,Feira VI"));
@@ -248,6 +302,10 @@ public class LivroDAOTest {
 
     }
 
+    /**
+     * Caso de teste que verifica se o DAO está retornando corretamente a quantidade de livros reservados do momento;
+     *
+     */
     @Test
     void numReserved() throws Exception {
         /*

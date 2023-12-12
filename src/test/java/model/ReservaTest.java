@@ -30,11 +30,21 @@ public class ReservaTest {
     Livro Livro2;
     Livro Livro3;
     ArrayList<Emprestimo> lista;
+
+    /**
+     * Método executado antes de cada teste para preenchimento dos dados para realizar os testes;
+     *
+     */
     @BeforeEach
     void setUp() throws Exception {
 
     }
 
+    /**
+     * Método executado após cada teste, responsável por apagar os dados do armazenamento, para que não ocorra erros
+     * nos testes;
+     *
+     */
     @AfterEach
     void tearDown() throws Exception {
         DAO.getEmprestimoDAO().deleteMany();
@@ -42,6 +52,10 @@ public class ReservaTest {
         DAO.getUsuarioDAO().deleteMany();
     }
 
+    /**
+     * Caso de teste que verifica se o método de finalizar reserva está alterando os parâmetros
+     * necessários;
+     */
     @Test
     void finalizarReserva() throws Exception {
         Usuario usuario = DAO.getUsuarioDAO().create(new Usuario("Carlos","75988351212","Feira VI,Rua B")) ;

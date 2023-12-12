@@ -15,6 +15,10 @@ public class DAO {
     private static UsuarioDAODisco usuarioDAOinstance;
     private static ReservaDAODisco reservaDAOinstance;
 
+    /**
+     *
+     * @return Instância única de AdministradorDAODisco
+     */
     public static AdministradorDAODisco getAdministradorDAO() {
         if(administradorDAOinstance == null){
             //administradorDAOinstance = new AdministradorDAO();
@@ -23,6 +27,10 @@ public class DAO {
         return administradorDAOinstance;
     }
 
+    /**
+     *
+     * @return Instância única de BibliotecarioDAODisco
+     */
     public static BibliotecarioDAODisco getBibliotecarioDAO() {
         if(bibliotecarioDAOinstance == null){
             //bibliotecarioDAOinstance = new BibliotecarioDAO();
@@ -31,6 +39,10 @@ public class DAO {
         return bibliotecarioDAOinstance;
     }
 
+    /**
+     *
+     * @return Instância única de EmprestimoDAODisco
+     */
     public static EmprestimoDAODisco getEmprestimoDAO() {
         if(emprestimoDAOinstance == null){
             //emprestimoDAOinstance = new EmprestimoDAO();
@@ -39,6 +51,10 @@ public class DAO {
         return emprestimoDAOinstance;
     }
 
+    /**
+     *
+     * @return Instância única de LivroDAODisco
+     */
     public static LivroDAODisco getLivroDAO() {
         if(livroDAOinstance == null){
             //livroDAOinstance = new LivroDAO();
@@ -47,6 +63,10 @@ public class DAO {
         return livroDAOinstance;
     }
 
+    /**
+     *
+     * @return Instância única de UsuarioDAODisco
+     */
     public static UsuarioDAODisco getUsuarioDAO() {
         if (usuarioDAOinstance == null){
             //usuarioDAOinstance = new UsuarioDAO();
@@ -55,6 +75,10 @@ public class DAO {
         return usuarioDAOinstance;
     }
 
+    /**
+     *
+     * @return Instância única de ReservaDAODisco
+     */
     public static ReservaDAODisco getReservaDAO() {
         if (reservaDAOinstance == null){
             //reservaDAOinstance = new ReservaDAO();

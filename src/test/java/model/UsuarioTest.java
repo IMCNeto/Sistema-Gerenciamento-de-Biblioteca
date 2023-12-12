@@ -20,15 +20,28 @@ public class UsuarioTest {
 
     Usuario usuario;
 
+    /**
+     * Método executado antes de cada teste para preenchimento dos dados para realizar os testes;
+     *
+     */
     @BeforeEach
     void setUp() throws Exception {
         usuario = DAO.getUsuarioDAO().create(new Usuario("Tiago","75982830090","R. A,11,Feira VI"));
     }
 
+    /**
+     * Método executado após cada teste, responsável por apagar os dados do armazenamento, para que não ocorra erros
+     * nos testes;
+     *
+     */
     @AfterEach
     void tearDown() throws Exception {
         DAO.getUsuarioDAO().deleteMany();
     }
+
+    /**
+     * Caso de teste que verifica se o método de multa está calculando a multa de forma correta;
+     */
     @Test
     /*
      1 - 3 = -2 ; -2 não é maior ou igual á 0; logo, a multa que é o dobro de dias em atraso deve ser aplicada!
