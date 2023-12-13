@@ -1,5 +1,6 @@
 package com.uefs.sigbiblioteca.dao;
 
+import com.uefs.sigbiblioteca.Interfaces.BibliotecarioCRUD;
 import com.uefs.sigbiblioteca.model.Administrador;
 import com.uefs.sigbiblioteca.model.Bibliotecario;
 import com.uefs.sigbiblioteca.utilities.GerenciadorDeArquivos;
@@ -11,7 +12,7 @@ import java.util.List;
 import static com.uefs.sigbiblioteca.utilities.GerenciadorDeArquivos.carregar_arquivo;
 import static com.uefs.sigbiblioteca.utilities.GerenciadorDeArquivos.criar_arquivo;
 
-public class BibliotecarioDAODisco {
+public class BibliotecarioDAODisco implements BibliotecarioCRUD {
 
     /**
      * Arquivo que armazena as informações sobre os bibliotecarioss;

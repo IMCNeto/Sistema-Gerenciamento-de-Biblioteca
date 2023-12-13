@@ -19,7 +19,7 @@ import static com.uefs.sigbiblioteca.utilities.GerenciadorDeArquivos.*;
  * @version 1.0;
  */
 
-public class AdministradorDAODisco {
+public class AdministradorDAODisco implements AdministradorCRUD {
 
     /**
      * Arquivo que armazena as informações sobre os administradores;
