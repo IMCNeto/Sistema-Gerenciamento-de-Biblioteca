@@ -4,7 +4,6 @@ import com.uefs.sigbiblioteca.Interfaces.LivroCRUD;
 import com.uefs.sigbiblioteca.model.Emprestimo;
 import com.uefs.sigbiblioteca.model.Livro;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;

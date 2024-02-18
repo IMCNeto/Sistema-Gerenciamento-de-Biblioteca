@@ -1,7 +1,6 @@
 package com.uefs.sigbiblioteca.dao;
 
 import com.uefs.sigbiblioteca.Interfaces.UsuarioCRUD;
-import com.uefs.sigbiblioteca.model.Administrador;
 import com.uefs.sigbiblioteca.model.Emprestimo;
 import com.uefs.sigbiblioteca.model.Usuario;
 import com.uefs.sigbiblioteca.utilities.GerenciadorDeArquivos;

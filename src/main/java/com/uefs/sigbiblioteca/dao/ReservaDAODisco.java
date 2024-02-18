@@ -1,7 +1,6 @@
 package com.uefs.sigbiblioteca.dao;
 
 import com.uefs.sigbiblioteca.Interfaces.ReservaCRUD;
-import com.uefs.sigbiblioteca.model.Administrador;
 import com.uefs.sigbiblioteca.model.Livro;
 import com.uefs.sigbiblioteca.model.Reserva;
 import com.uefs.sigbiblioteca.model.Usuario;

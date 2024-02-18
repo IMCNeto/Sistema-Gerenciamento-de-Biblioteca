@@ -61,7 +61,7 @@ public class AdministradorDAODisco implements AdministradorCRUD {
             int index = this.getProximoID();
             this.lista.add(objeto);
             objeto.setId(index);
-            GerenciadorDeArquivos.salvar_arquivo(arquivo, this.lista);
+            salvar_arquivo(arquivo, this.lista);
             return objeto;
         } catch (Exception e) {
             throw new Exception("Erro ao criar Administrador");
@@ -109,7 +109,7 @@ public class AdministradorDAODisco implements AdministradorCRUD {
         try {
             int index = this.lista.indexOf(adm);
             this.lista.set(index,adm);
-            GerenciadorDeArquivos.salvar_arquivo(arquivo, this.lista);
+            salvar_arquivo(arquivo, this.lista);
             return adm;
         }
         catch (Exception e){
@@ -127,7 +127,7 @@ public class AdministradorDAODisco implements AdministradorCRUD {
 
         try {
             this.lista.remove(adm);
-            GerenciadorDeArquivos.salvar_arquivo(arquivo, this.lista);
+            salvar_arquivo(arquivo, this.lista);
         }
         catch (Exception e){
             throw new Exception("Erro ao Deletar Administrador");
@@ -141,7 +141,7 @@ public class AdministradorDAODisco implements AdministradorCRUD {
     public void deleteMany() throws Exception {
         try {
             this.lista.clear();
-            GerenciadorDeArquivos.salvar_arquivo(arquivo, this.lista);
+            salvar_arquivo(arquivo, this.lista);
         }
         catch (Exception e){
             throw new Exception("Erro ao deletar Lista de Administradores");

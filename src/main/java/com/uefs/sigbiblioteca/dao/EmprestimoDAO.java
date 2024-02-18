@@ -4,7 +4,6 @@ import com.uefs.sigbiblioteca.Interfaces.EmprestimoCRUD;
 import com.uefs.sigbiblioteca.model.Emprestimo;
 import com.uefs.sigbiblioteca.model.Usuario;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

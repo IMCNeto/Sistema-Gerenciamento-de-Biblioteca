@@ -3,7 +3,7 @@ package com.uefs.sigbiblioteca.dao;
 import com.uefs.sigbiblioteca.Interfaces.UsuarioCRUD;
 import com.uefs.sigbiblioteca.model.Emprestimo;
 import com.uefs.sigbiblioteca.model.Usuario;
-import com.uefs.sigbiblioteca.model.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

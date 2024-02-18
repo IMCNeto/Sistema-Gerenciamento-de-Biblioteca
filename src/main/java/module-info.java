@@ -1,9 +1,8 @@
-module Biblioteca {
-    opens com.uefs.sigbiblioteca.dao;
-    opens com.uefs.sigbiblioteca.model;
-    opens com.uefs.sigbiblioteca.Interfaces;
+module org.example.ssgbiblioteca {
+    requires javafx.controls;
+    requires javafx.fxml;
 
-    exports com.uefs.sigbiblioteca.dao;
-    exports com.uefs.sigbiblioteca.model;
-    exports com.uefs.sigbiblioteca.Interfaces;
+
+    opens com.uefs.sigbiblioteca to javafx.fxml;
+    exports com.uefs.sigbiblioteca;
 }
