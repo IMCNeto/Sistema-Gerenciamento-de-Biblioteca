@@ -123,6 +123,21 @@ public class UsuarioDAODisco implements UsuarioCRUD {
         }
     }
 
+    @Override
+    public Usuario findbyname(String name, String senha) throws Exception {
+        try {
+            for (Usuario user : this.lista){
+                if (user.getNome().equals(name) && user.getSenha().equals(senha)){
+                    return user;
+                }
+            }
+            return null;
+        }
+        catch (Exception e) {
+            throw new Exception("Erro ao buscar Administrador");
+        }
+    }
+
     /**
      * Método que deleta um usuário da ArrayList;
      *
@@ -153,6 +168,13 @@ public class UsuarioDAODisco implements UsuarioCRUD {
         catch (Exception e){
             throw new Exception("Erro ao deletar lista de usuários");
         }
+    }
+
+    @Override
+    public Usuario updateIndex(int index, Usuario usuario){
+        this.lista.set(index,usuario);
+        GerenciadorDeArquivos.salvar_arquivo(arquivo,this.lista);
+        return usuario;
     }
 
     /**

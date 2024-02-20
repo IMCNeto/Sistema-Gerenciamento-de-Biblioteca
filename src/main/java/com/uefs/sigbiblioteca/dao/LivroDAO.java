@@ -259,6 +259,15 @@ public class LivroDAO implements LivroCRUD {
         return listaFinal.subList(0,Math.min(list.size(),n));
     }
 
+
+    public  Livro updateIndex(int index,Livro livro){
+        this.lista.set(index,livro);
+        return livro;
+    }
+
+    public Livro findbyIndex(int index){
+        return this.lista.get(index);
+    }
     /**
      * Método responsável por retornar número de livros atrasados no determinado momento (Requisito do problema)
      * @param dataAtual Localdate referente a data momentânea

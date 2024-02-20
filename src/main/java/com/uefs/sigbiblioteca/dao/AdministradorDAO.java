@@ -2,6 +2,7 @@ package com.uefs.sigbiblioteca.dao;
 
 import com.uefs.sigbiblioteca.Interfaces.AdministradorCRUD;
 import com.uefs.sigbiblioteca.model.Administrador;
+import com.uefs.sigbiblioteca.model.Livro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +101,22 @@ public class AdministradorDAO implements AdministradorCRUD {
         }
 
     }
+
+    @Override
+    public Administrador findbyname(String name, String senha) throws Exception {
+        try {
+            for (Administrador adm : this.lista){
+                if (adm.getNome().equals(name) && adm.getSenha().equals(senha)){
+                    return adm;
+                }
+            }
+            return null;
+        }
+        catch (Exception e) {
+            throw new Exception("Erro ao buscar Administrador");
+        }
+    }
+
 
     /**
      * Método que atualiza os dados do Administrador no arraylist;

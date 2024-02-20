@@ -1,8 +1,11 @@
 package com.uefs.sigbiblioteca.dao;
 
 import com.uefs.sigbiblioteca.Interfaces.UsuarioCRUD;
+import com.uefs.sigbiblioteca.model.Bibliotecario;
 import com.uefs.sigbiblioteca.model.Emprestimo;
+import com.uefs.sigbiblioteca.model.Livro;
 import com.uefs.sigbiblioteca.model.Usuario;
+import com.uefs.sigbiblioteca.utilities.GerenciadorDeArquivos;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -124,6 +127,28 @@ public class UsuarioDAO implements UsuarioCRUD {
         }
     }
 
+
+    @Override
+    public Usuario findbyname(String name, String senha) throws Exception {
+        try {
+            for (Usuario user : this.lista){
+                if (user.getNome().equals(name) && user.getSenha().equals(senha)){
+                    return user;
+                }
+            }
+            return null;
+        }
+        catch (Exception e) {
+            throw new Exception("Erro ao buscar Administrador");
+        }
+    }
+
+
+    @Override
+    public Usuario updateIndex(int index, Usuario usuario){
+        this.lista.set(index,usuario);
+        return usuario;
+    }
     /**
      * Método que deleta um usuário da ArrayList;
      *

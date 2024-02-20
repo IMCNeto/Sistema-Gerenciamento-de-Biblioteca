@@ -22,6 +22,10 @@ public class Usuario implements Serializable {
     /**
      * Guarda telefone do objeto;
      */
+
+    private  String senha;
+
+
     private String telefone;
 
     /**
@@ -40,16 +44,19 @@ public class Usuario implements Serializable {
     private int multa;
 
 
+
+
     /**
      *
      * @param nome nome do usuário;
      * @param telefone telefone do usuário;
      * @param endereco endereço que reside o usuário;
      */
-    public Usuario(String nome, String telefone, String endereco) {
+    public Usuario(String nome, String telefone, String endereco, String senha) {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
+        this.senha = senha;
     }
 
     public String getNome() {
@@ -60,6 +67,18 @@ public class Usuario implements Serializable {
         this.nome = nome;
         DAO.getUsuarioDAO().update(this);
     }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    /**
+     * Guarda senha do objeto;
+     */
 
     public String getTelefone() {
         return telefone;

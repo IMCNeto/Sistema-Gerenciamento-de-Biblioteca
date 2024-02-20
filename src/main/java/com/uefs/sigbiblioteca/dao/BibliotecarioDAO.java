@@ -1,6 +1,7 @@
 package com.uefs.sigbiblioteca.dao;
 
 import com.uefs.sigbiblioteca.Interfaces.BibliotecarioCRUD;
+import com.uefs.sigbiblioteca.model.Administrador;
 import com.uefs.sigbiblioteca.model.Bibliotecario;
 
 import java.util.ArrayList;
@@ -98,6 +99,22 @@ public class BibliotecarioDAO implements BibliotecarioCRUD {
             throw new Exception("Erro ao buscar bibliotecário por ID");
         }
 
+    }
+
+
+    @Override
+    public Bibliotecario findbyname(String name, String senha) throws Exception {
+        try {
+            for (Bibliotecario bib : this.lista){
+                if (bib.getNome().equals(name) && bib.getSenha().equals(senha)){
+                    return bib;
+                }
+            }
+            return null;
+        }
+        catch (Exception e) {
+            throw new Exception("Erro ao buscar Administrador");
+        }
     }
 
     /**

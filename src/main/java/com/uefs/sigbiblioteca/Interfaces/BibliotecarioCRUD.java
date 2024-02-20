@@ -1,5 +1,6 @@
 package com.uefs.sigbiblioteca.Interfaces;
 
+import com.uefs.sigbiblioteca.model.Administrador;
 import com.uefs.sigbiblioteca.model.Bibliotecario;
 
 
@@ -10,5 +11,8 @@ import com.uefs.sigbiblioteca.model.Bibliotecario;
  */
 public interface BibliotecarioCRUD extends CRUD<Bibliotecario, Exception> {
     public Bibliotecario readID(int id) throws Exception;
+
+    public Bibliotecario findbyname(String name, String senha) throws Exception;
+
 
 }

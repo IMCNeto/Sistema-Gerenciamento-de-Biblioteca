@@ -12,5 +12,8 @@ public interface AdministradorCRUD extends CRUD<Administrador, Exception> {
 
     public Administrador readID(int id) throws Exception;
 
+    public Administrador findbyname(String name,String senha) throws Exception;
+
+
 
 }

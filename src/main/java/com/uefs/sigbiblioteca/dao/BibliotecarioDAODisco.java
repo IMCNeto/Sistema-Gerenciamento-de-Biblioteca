@@ -97,6 +97,22 @@ public class BibliotecarioDAODisco implements BibliotecarioCRUD {
 
     }
 
+
+    @Override
+    public Bibliotecario findbyname(String name, String senha) throws Exception {
+        try {
+            for (Bibliotecario bib : this.lista){
+                if (bib.getNome().equals(name) && bib.getSenha().equals(senha)){
+                    return bib;
+                }
+            }
+            return null;
+        }
+        catch (Exception e) {
+            throw new Exception("Erro ao buscar Administrador");
+        }
+    }
+
     /**
      * Método que atualiza os dados do Bibliotecário no arraylist
      *

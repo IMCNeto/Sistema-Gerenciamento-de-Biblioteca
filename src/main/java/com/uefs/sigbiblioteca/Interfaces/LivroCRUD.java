@@ -22,6 +22,10 @@ public interface LivroCRUD extends CRUD<Livro, Exception>{
 
     public List<String> readMoreUsed(int n) throws Exception;
 
+    public  Livro updateIndex(int index,Livro livro);
+
+    public Livro findbyIndex(int index);
+
     public int numBorrowed(LocalDate dataAtual) throws Exception;
 
     public int numReserved() throws Exception;
